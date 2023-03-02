@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ErrorPage from "./error-page";
 import HearingTest from "./routes/hearingTest";
 import Experiment from "./routes/experiment";
+import DemographicForm from "./routes/demographicForm";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     {
         path: "experiment",
         element: <Experiment/>
+    },
+    {
+        path: "demographicForm",
+        element: <DemographicForm/>
     }
 ])
 
