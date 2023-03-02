@@ -1,7 +1,7 @@
 import '../App.css';
-import StartHearingTest from "../components/StartHearingTest";
+import NextPageButton from "../components/NextPageButton";
 
-function Root() {
+function Root(props) {
 
   return (
     <div className="App">
@@ -9,8 +9,8 @@ function Root() {
         <p>
           Experiment Portal
         </p>
-          <StartHearingTest/>
       </header>
+        <NextPageButton />
     </div>
   );
 }

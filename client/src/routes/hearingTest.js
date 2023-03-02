@@ -1,11 +1,10 @@
-import StartExpButton from "../components/startExperimentButton";
+
 
 export default function HearingTest(){
 
     return(
-        <div>
+        <div className={"App"}>
             <p>Administer initial hearing test?</p>
-            <StartExpButton/>
         </div>
     )
 }
