@@ -1,44 +1,47 @@
 import {useState} from "react";
-import Root from "../routes/Root";
-import HearingTest from "../routes/hearingTest";
-import DemographicForm from "../routes/demographicForm";
-import Experiment from "../routes/experiment";
+import Root from "../pages/Root";
+import HearingTest from "../pages/hearingTest";
+import DemographicForm from "../pages/demographicForm";
+import Experiment from "../pages/experiment";
 
 
 export default function App(){
 
 
     const [pageIndex, setPageIndex] = useState(0)
-    const experimentState = useState({"instance" : "aggregating data"})
+    const [experimentState, setExperimentState] = useState({"instance" : "aggregating data"})
 
     const context = {
-        pageIndex: () => pageIndex,
-        setPageIndex: () => setPageIndex(),
-
+        pageIndex: pageIndex,
+        setPageIndex: (x) => setPageIndex(x),
+        experimentState: experimentState,
+        setExperimentState: (x) => setExperimentState(x),
+        numPages: 4
     }
 
     // Routes
     const root = {
         name: "start",
-        element: <Root expiriment={[pageIndex, setPageIndex]}/>
+        element: <Root context={context}/>
     }
 
     const hearingTest = {
         name: "hearingTest",
-        element: <HearingTest expiriment={[pageIndex, setPageIndex]}/>
+        element: <HearingTest context={context}/>
     }
 
     const demographicsForm = {
         name: "demographicsForm",
-        element: <DemographicForm expiriment={[pageIndex, setPageIndex]}/>
+        element: <DemographicForm context={context}/>
     }
 
     const experiment = {
         name: "experiment",
-        element: <Experiment expiriment={[pageIndex, setPageIndex]}/>
+        element: <Experiment context={context}/>
     }
 
-    const pageOrder = [root, hearingTest, demographicsForm, experiment]
+    // Order that the pages will appear
+    const pageOrder = [demographicsForm, root, hearingTest, demographicsForm, experiment]
 
     return(
         pageOrder[pageIndex].element

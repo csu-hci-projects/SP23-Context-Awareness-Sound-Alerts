@@ -4,9 +4,9 @@ export default function NextPageButton(props){
 
     const nextPage = () =>{
         const numPages = props.context.numPages
-        props.context.setPageIndex((props.context.pageIndex + 1) % numPages)
+        props.context.setPageIndex((props.context.pageIndex - 1) % numPages)
     }
     return(
-        <Button onClick={()=>nextPage()}>Next Page ></Button>
+        <Button onClick={()=>nextPage()}>{"< Previous Page"}</Button>
     )
 }
