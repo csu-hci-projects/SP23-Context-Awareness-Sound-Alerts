@@ -41,7 +41,7 @@ export default function App(){
     }
 
     // Order that the pages will appear
-    const pageOrder = [demographicsForm, root, hearingTest, demographicsForm, experiment]
+    const pageOrder = [root, hearingTest, demographicsForm, experiment]
 
     return(
         pageOrder[pageIndex].element
