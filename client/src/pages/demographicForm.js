@@ -9,7 +9,6 @@ export default function DemographicForm(props){
                 <FormGroup className={"formGroup"} row>
                     <Label for="gender" sm={2}>Gender</Label>
                     <Col>
-
                         <Label check>
                             <Input type="radio" name="radio1" />{' '}
                             female
@@ -24,10 +23,34 @@ export default function DemographicForm(props){
                         </Label>
                     </Col>
                 </FormGroup>
+
                 <FormGroup className={"formGroup"} row>
                     <Label for="gender">Age</Label>
                     <Col>
                         <Input type="text" name="text1" />{' '}
+                    </Col>
+                </FormGroup>
+
+                <FormGroup className={"formGroup"} row>
+                    <Label for="Hours" sm={3}>Hours of computer use per day</Label>
+                    <Col>
+
+                        <Label check>
+                            <Input type="radio" name="radio1" />{' '}
+                            1-3
+                        </Label><br/>
+                        <Label check>
+                            <Input type="radio" name="radio1" />{' '}
+                            4-7
+                        </Label><br/>
+                        <Label check>
+                            <Input type="radio" name="radio1" />{' '}
+                            8-10
+                        </Label>
+                        <Label check>
+                            <Input type="radio" name="radio1" />{' '}
+                            10+
+                        </Label>
                     </Col>
                 </FormGroup>
             </Form>
