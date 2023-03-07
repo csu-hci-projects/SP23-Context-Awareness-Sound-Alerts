@@ -1,8 +1,8 @@
 export default class subject {
-    #gender;
-    #age;
-    #computerUse;
-    #groupID = generate_groupID();
+    gender;
+    age;
+    computerUse;
+    groupID = generate_groupID();
 
     set gender(genderInput) {
         this.gender = genderInput;
@@ -17,19 +17,19 @@ export default class subject {
     }
 
     get groupID() {
-        return this.#groupID;
+        return this.groupID;
     }
 
     get computerUse() {
-        return this.#computerUse;
+        return this.computerUse;
     }
 
     get age() {
-        return this.#age;
+        return this.age;
     }
 
     get gender() {
-        return this.#gender;
+        return this.gender;
     }
 }
 

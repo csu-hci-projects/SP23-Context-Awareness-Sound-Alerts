@@ -1,16 +1,23 @@
+import React from "react";
 import {Button, Form, FormGroup, Label, Input, FormText, Table, Col} from 'reactstrap';
 import NavBar from "../components/NavBar";
 import subject from "../components/Subject"
+import Data from "../components/Data";
 
 export default function DemographicForm(props){
 
-    const newSubject = new subject();
-    console.log("DEBUG: groupID=", newSubject.groupID);
+    const handleAge = (e) =>{
+        let updateObject = JSON.parse(JSON.stringify(props.context.experimentState))
+        updateObject.age = e.target.value;
+        props.context.setExperimentState(updateObject)
+    }
 
     return(
         <div className={"App"}>
             <Form className={"form"}>
-                <FormGroup className={"formGroup"} row>
+                <FormGroup className={"formGroup"} row
+                   onChange={()=> {
+                }}>
                     <Label for="gender" sm={2}>Gender</Label>
                     <Col>
                         <Label check>
@@ -31,7 +38,8 @@ export default function DemographicForm(props){
                 <FormGroup className={"formGroup"} row>
                     <Label for="gender">Age</Label>
                     <Col>
-                        <Input type="text" name="text1" id="Age" />{' '}
+                        <Input type="text" name="text1" id="Age"
+                           onChange={handleAge}/>{' '}
                     </Col>
                 </FormGroup>
 
@@ -59,6 +67,7 @@ export default function DemographicForm(props){
                 </FormGroup>
             </Form>
             <NavBar context={props.context}/>
+            <Data subject={props.context.experimentState}/>
         </div>
     )
 }

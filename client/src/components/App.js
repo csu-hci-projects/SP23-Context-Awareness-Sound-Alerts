@@ -3,13 +3,14 @@ import Root from "../pages/Root";
 import HearingTest from "../pages/hearingTest";
 import DemographicForm from "../pages/demographicForm";
 import Experiment from "../pages/experiment";
+import subject from "./Subject";
 
 
 export default function App(){
 
 
-    const [pageIndex, setPageIndex] = useState(0)
-    const [experimentState, setExperimentState] = useState({"instance" : "aggregating data"})
+    const [pageIndex, setPageIndex] = useState(2)
+    const [experimentState, setExperimentState] = useState(new subject())
 
     const context = {
         pageIndex: pageIndex,
