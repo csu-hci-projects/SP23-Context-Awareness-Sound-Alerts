@@ -1,5 +1,7 @@
 import NextPageButton from "../components/NextPageButton";
 import NavBar from "../components/NavBar";
+import Data from "../components/Data";
+import React from "react";
 
 
 export default function HearingTest(props){

@@ -1,35 +1,59 @@
 export default class subject {
-    gender;
-    age;
-    computerUse;
-    groupID = generate_groupID();
+    #gender;
+    #age;
+    #computerUse;
+    #groupID = generate_groupID();
+    #wpm = [];
+
+    getCopy(){
+        let copy = new subject();
+        copy.gender = this.#gender;
+        copy.age = this.#age;
+        copy.computerUse = this.#computerUse;
+        copy.groupID = this.#groupID;
+        copy.wpm = this.#wpm
+
+        return copy;
+    }
 
     set gender(genderInput) {
-        this.gender = genderInput;
+        this.#gender = genderInput;
     }
 
     set age(ageInput) {
-        this.age = ageInput;
+        this.#age = ageInput;
     }
 
     set computerUse(computerUseInput) {
-        this.computerUse = computerUseInput;
+        this.#computerUse = computerUseInput;
+    }
+
+    set groupID(groupIDInput){
+        this.#groupID = groupIDInput;
+    }
+
+    set wpm(wpmInput){
+        this.#wpm.push(wpmInput);
     }
 
     get groupID() {
-        return this.groupID;
+        return this.#groupID;
     }
 
     get computerUse() {
-        return this.computerUse;
+        return this.#computerUse;
     }
 
     get age() {
-        return this.age;
+        return this.#age;
     }
 
     get gender() {
-        return this.gender;
+        return this.#gender;
+    }
+
+    get wpm(){
+        return this.#wpm;
     }
 }
 

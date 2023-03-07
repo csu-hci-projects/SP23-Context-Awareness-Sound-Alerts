@@ -4,12 +4,13 @@ import HearingTest from "../pages/hearingTest";
 import DemographicForm from "../pages/demographicForm";
 import Experiment from "../pages/experiment";
 import subject from "./Subject";
+import Export from "../pages/export";
 
 
 export default function App(){
 
 
-    const [pageIndex, setPageIndex] = useState(2)
+    const [pageIndex, setPageIndex] = useState(0)
     const [experimentState, setExperimentState] = useState(new subject())
 
     const context = {
@@ -17,7 +18,7 @@ export default function App(){
         setPageIndex: (x) => setPageIndex(x),
         experimentState: experimentState,
         setExperimentState: (x) => setExperimentState(x),
-        numPages: 4
+        numPages: 5
     }
 
     // Routes
@@ -41,8 +42,13 @@ export default function App(){
         element: <Experiment context={context}/>
     }
 
+    const exportData = {
+        name: "export",
+        element: <Export context={context}/>
+    }
+
     // Order that the pages will appear
-    const pageOrder = [root, hearingTest, demographicsForm, experiment]
+    const pageOrder = [root, hearingTest, demographicsForm, experiment, exportData]
 
     return(
         pageOrder[pageIndex].element

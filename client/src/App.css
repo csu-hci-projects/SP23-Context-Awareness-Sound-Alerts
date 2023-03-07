@@ -35,15 +35,22 @@
   flex-direction: column;
   justify-content: left;
   flex: 1;
-  height: 50%;
+  height: 150px;
+  margin-top: 30px;
 }
 
 .navBar {
   display: block;
+  margin-top: 30px;
 }
 
 .formGroup {
   text-align: left;
   display: block;
   justify-items: left;
+}
+
+.data {
+  text-align: left;
+  margin-top: 20px;
 }
