@@ -1,22 +1,25 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import Root from "../pages/Root";
 import HearingTest from "../pages/hearingTest";
 import DemographicForm from "../pages/demographicForm";
 import Experiment from "../pages/experiment";
+import subject from "./Subject";
+import Export from "../pages/export";
+import NavBar from "./NavBar";
 
 
 export default function App(){
 
 
     const [pageIndex, setPageIndex] = useState(0)
-    const [experimentState, setExperimentState] = useState({"instance" : "aggregating data"})
+    const [experimentState, setExperimentState] = useState(new subject())
 
     const context = {
         pageIndex: pageIndex,
         setPageIndex: (x) => setPageIndex(x),
         experimentState: experimentState,
         setExperimentState: (x) => setExperimentState(x),
-        numPages: 4
+        numPages: 5
     }
 
     // Routes
@@ -40,10 +43,19 @@ export default function App(){
         element: <Experiment context={context}/>
     }
 
+    const exportData = {
+        name: "export",
+        element: <Export context={context}/>
+    }
+
     // Order that the pages will appear
-    const pageOrder = [root, hearingTest, demographicsForm, experiment]
+    const pageOrder = [root, hearingTest, demographicsForm, experiment, exportData]
 
     return(
-        pageOrder[pageIndex].element
+        <div className={"App"}>
+            {pageOrder[pageIndex].element}
+            <NavBar context={context}/>
+        </div>
+
     )
 }

@@ -1,6 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, {useState, useRef, useEffect} from "react";
+import NavBar from "../components/NavBar";
+import * as PropTypes from "prop-types";
 
-export default function Experiment() {
+function DisplayWPM(props) {
+  useEffect(()=>{
+    let updateObject = props.context.experimentState.getCopy();
+    updateObject.wpm = [props.wpm];
+    props.context.setExperimentState(updateObject);
+  },[])
+
+  return(
+      <p>Your WPM: {props.wpm}</p>
+      )
+}
+
+DisplayWPM.propTypes = {wpm: PropTypes.number};
+export default function Experiment(props) {
   const [text, setText] = useState(
     "The quick brown fox jumps over the lazy dog."
   );
@@ -15,6 +30,8 @@ export default function Experiment() {
     currentSentence.length + 1,
     text.length
   );
+
+  let updateObject = props.context.experimentState.getCopy();
 
   const handleKeyPress = (event) => {
     if (startTime === null) {
@@ -47,8 +64,7 @@ export default function Experiment() {
   }
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-    <div>
+    <div className={"content"}>
       <h1>Words Per Minute Test</h1>
       <p><b>{currentSentence}</b></p>
       <textarea placeholder="Type the above sentence as fast and as accurately as possible" rows={3} cols={50} ref={inputRef} onKeyUp={handleKeyPress} />
@@ -57,11 +73,10 @@ export default function Experiment() {
       )}
       {startTime !== null && endTime !== null && (
         <div>
-          <p>Your WPM: {wpm}</p>
+          <DisplayWPM context={props.context} wpm={wpm}/>
           <button onClick={handleRestart}>Restart</button>
         </div>
       )}
-    </div>
   </div>
   );
 }
