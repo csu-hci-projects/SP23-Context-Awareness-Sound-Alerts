@@ -6,11 +6,8 @@ import React from "react";
 export default function Root(props) {
 
   return (
-    <div className="App">
-        <p>
-          Experiment Portal Home
-        </p>
-        <NavBar context={props.context}/>
+    <div className="content">
+        <h1>Experiment Portal Home</h1>
     </div>
   );
 }

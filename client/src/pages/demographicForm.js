@@ -25,7 +25,7 @@ export default function DemographicForm(props){
     }
 
     return(
-        <div className={"App"}>
+        <div className={"content"}>
             <Form className={"form"}>
                 <FormGroup className={"formGroup"} row
                    onChange={handleGender}>
@@ -78,7 +78,6 @@ export default function DemographicForm(props){
                 </FormGroup>
             </Form>
             <p>This looks stupid, I'll fix it. -Dan</p>
-            <NavBar context={props.context}/>
         </div>
     )
 }

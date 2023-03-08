@@ -64,8 +64,7 @@ export default function Experiment(props) {
   }
 
   return (
-    <div className={"App"}>
-    <div>
+    <div className={"content"}>
       <h1>Words Per Minute Test</h1>
       <p><b>{currentSentence}</b></p>
       <textarea placeholder="Type the above sentence as fast and as accurately as possible" rows={3} cols={50} ref={inputRef} onKeyUp={handleKeyPress} />
@@ -78,8 +77,6 @@ export default function Experiment(props) {
           <button onClick={handleRestart}>Restart</button>
         </div>
       )}
-    </div>
-    <NavBar context={props.context}/>
   </div>
   );
 }

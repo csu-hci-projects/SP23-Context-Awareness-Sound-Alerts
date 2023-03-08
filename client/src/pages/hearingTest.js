@@ -7,9 +7,8 @@ import React from "react";
 export default function HearingTest(props){
 
     return(
-        <div className={"App"}>
-            <p>Administer initial hearing test?</p>
-            <NavBar context={props.context}/>
+        <div className={"content"}>
+            <h1>Administer initial hearing test?</h1>
         </div>
     )
 }
