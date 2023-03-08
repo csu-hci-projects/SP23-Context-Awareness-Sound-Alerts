@@ -54,3 +54,12 @@
   text-align: left;
   margin-top: 20px;
 }
+
+.navButton {
+
+}
+
+.navButton:hover {
+  cursor: pointer;
+  background-color: rgba(10, 10, 10, .5);
+}

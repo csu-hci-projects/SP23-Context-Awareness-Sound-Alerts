@@ -16,6 +16,10 @@ export default class subject {
         return copy;
     }
 
+    toString(){
+        return JSON.stringify(this);
+    }
+
     set gender(genderInput) {
         this.#gender = genderInput;
     }
