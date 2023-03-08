@@ -64,6 +64,7 @@
   margin-top: 20px;
   color: #ababab;
   font-family: sans-serif;
+  width: 100vw;
 }
 
 .navButton {
@@ -95,5 +96,9 @@
 .action-button:hover {
   cursor: pointer;
   background-color: rgb(200, 200, 200);
-  transition: background-color .25s;
+}
+
+.action-button:active {
+  cursor: pointer;
+  background-color: #00ff15;
 }

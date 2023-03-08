@@ -48,6 +48,12 @@ export default function Experiment(props) {
     }
   };
 
+  const handleActionClick = () => {
+    let updateObject = props.context.experimentState.getCopy();
+    updateObject.logAction();
+    props.context.setExperimentState(updateObject);
+  }
+
   const handleRestart = () => {
     setText("The quick brown fox jumps over the lazy dog.");
     setCurrentIndex(0);
@@ -67,7 +73,7 @@ export default function Experiment(props) {
   return (
     <div className={"content"}>
       <h1>Words Per Minute Test</h1>
-      <Button className={"action-button"}>Click Me!</Button>
+      <Button className={"action-button"} onClick={handleActionClick}>Click Me!</Button>
       <p><b>{currentSentence}</b></p>
       <textarea placeholder="Type the above sentence as fast and as accurately as possible" rows={3} cols={50} ref={inputRef} onKeyUp={handleKeyPress} />
       {startTime !== null && endTime === null && (

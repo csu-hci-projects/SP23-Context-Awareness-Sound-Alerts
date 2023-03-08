@@ -4,6 +4,7 @@ export default class subject {
     #computerUse;
     #groupID = generate_groupID();
     #wpm = [];
+    #actions = [];
 
     getCopy(){
         let copy = new subject();
@@ -11,9 +12,14 @@ export default class subject {
         copy.age = this.#age;
         copy.computerUse = this.#computerUse;
         copy.groupID = this.#groupID;
-        copy.wpm = this.#wpm
+        copy.wpm = this.#wpm;
+        copy.actions = this.#actions;
 
         return copy;
+    }
+
+    logAction(){
+        this.#actions.push(new Date().getTime());
     }
 
     toString(){
@@ -40,6 +46,10 @@ export default class subject {
         this.#wpm.push(wpmInput);
     }
 
+    set actions(actionsInput){
+        this.#actions.push(actionsInput);
+    }
+
     get groupID() {
         return this.#groupID;
     }
@@ -58,6 +68,10 @@ export default class subject {
 
     get wpm(){
         return this.#wpm;
+    }
+
+    get actions(){
+        return this.#actions;
     }
 }
 
