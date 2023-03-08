@@ -11,7 +11,7 @@ import NavBar from "./NavBar";
 export default function App(){
 
 
-    const [pageIndex, setPageIndex] = useState(0)
+    const [pageIndex, setPageIndex] = useState(3)
     const [experimentState, setExperimentState] = useState(new subject())
 
     const context = {
@@ -53,7 +53,9 @@ export default function App(){
 
     return(
         <div className={"App"}>
-            {pageOrder[pageIndex].element}
+            <div className={"content-container"}>
+                {pageOrder[pageIndex].element}
+            </div>
             <NavBar context={context}/>
         </div>
 

@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from "react";
 import NavBar from "../components/NavBar";
 import * as PropTypes from "prop-types";
+import {Button} from "reactstrap";
 
 function DisplayWPM(props) {
   useEffect(()=>{
@@ -66,6 +67,7 @@ export default function Experiment(props) {
   return (
     <div className={"content"}>
       <h1>Words Per Minute Test</h1>
+      <Button className={"action-button"}>Click Me!</Button>
       <p><b>{currentSentence}</b></p>
       <textarea placeholder="Type the above sentence as fast and as accurately as possible" rows={3} cols={50} ref={inputRef} onKeyUp={handleKeyPress} />
       {startTime !== null && endTime === null && (
