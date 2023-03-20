@@ -9,6 +9,7 @@ export default function Data(props){
             <p>Computer Use: {props.subject.computerUse ? props.subject.computerUse : null}</p>
             <p>Group ID: {props.subject.groupID ? props.subject.groupID : null}</p>
             <p>WPMs: {props.subject.wpm}</p>
+            <p>Clicks: {props.subject.actions}</p>
         </div>
     )
 }
