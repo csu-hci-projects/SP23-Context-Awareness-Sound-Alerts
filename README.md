@@ -20,12 +20,12 @@ Set up Trello board for project tracking. Implemented WPM counter and typing pro
 * Implement error count in typing test and add to final data
 * Visual que that a typing error has been made, input text box does not respond to incorrect entry
 #### Dan Butcher:
-* Implement simeple hearing test
+* Implement simple hearing test
 * Sound design for notifications and background noises.
 #### Zack Lamb:
 * Visual designs for individual background sound phase pages
-* Build rest counter page with timer for inbetween background sound phases
+* Build rest counter page with timer in between background sound phases
 #### Zachary Lowe:
-* Plans to implement a "stop typing" feature that prevents typing in even of a typo. (May also just highlight in red any incorrect text entered into the WPM submission box.) Plans to implement ambient noise playback on experiment protoype.
+* Plans to implement a "stop typing" feature that prevents typing in even of a typo. (May also just highlight in red any incorrect text entered into the WPM submission box.) Plans to implement ambient noise playback on experiment prototype.
 ### Meeting Frequencies:
-As a team we have met each Thursday since January 26th to discuss current status of project and assist with planning and development. (Did not meet over Spring break.) Meetings are conducted virtually through Microsoft Teams. In addition to this we are in frequent contact with eachother through a Teams group chat.
+As a team we have met each Thursday since January 26th to discuss current status of project and assist with planning and development. (Did not meet over Spring break.) Meetings are conducted virtually through Microsoft Teams. In addition to this we are in frequent contact with each other through a Teams group chat.
