@@ -3,24 +3,29 @@ import {Button} from "reactstrap";
 
 export default function Sound(props){
 
-    const [audio] = useState(new Audio(" ../../../media/airport-ambience-mexico-5min48k24b.flac"))
+    const [audio] = useState(new Audio("http://localhost:22222/airport-ambience-mexico-5min48k24b.flac"))
+    const [play, setPlay] = useState(false)
 
-    const playAudio = ()=>{
-        if (audio !== undefined){
-            console.log("Play!" + JSON.stringify(audio))
+    useEffect(()=>{
+        if(play){
             audio.play()
                 .catch((err)=>{
-                    console.log(err)
-                });
-        } else {
-            console.log("audio is undefined")
+                    console.log("Error Playing Sound: " + err)
+                })
+            console.log("Audio Playing");
+        }else{
+            audio.pause();
+            console.log("Audio Paused");
         }
-
+    },[play])
+    const handleClick = ()=>{
+        setPlay(play ? false : true );
     }
 
     return(
         <div>
-            <Button onClick={playAudio}>Play Audio</Button>
+            <p>We'll make this button go away, thought it was handy for now.</p>
+            <Button onClick={handleClick}>Play / Pause</Button>
         </div>
     )
 }
