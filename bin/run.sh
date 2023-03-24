@@ -41,8 +41,10 @@ run_dev(){
 
 run_init(){
   print_header "Running Init"
-  print_log "Running npm install."
+  print_log "Running npm install for client."
   cd "$REPO_ROOT"/client && npm install
+  print_log "Running npm install for server."
+  cd "$REPO_ROOT"/server && npm install
 }
 
 run_stop(){
