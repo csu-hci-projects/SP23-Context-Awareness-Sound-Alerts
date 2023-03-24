@@ -54,7 +54,7 @@ kill_proc_listing_on_port(){
 run_dev(){
   print_header "Running Dev"
   print_success "Running Express Server for sounds"
-  cd "$REPO_ROOT"/server && node index.js &
+  cd "$REPO_ROOT"/server && npm run dev &
   print_success "Running webpack and browser"
   cd "$REPO_ROOT"/client && npm run dev &
 }
