@@ -12,6 +12,7 @@ export async function addToData(data){
 
         const result = await collection.insertOne(data);
         console.log(`A document was inserted with the _id: ${result.insertedId}`);
+        return {success: true, insertID: result.insertedId}
     } finally {
         await client.close();
     }

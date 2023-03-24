@@ -1,25 +1,25 @@
 export default class subject {
-    #gender;
-    #age;
-    #computerUse;
-    #groupID = generate_groupID();
-    #wpm = [];
-    #actions = [];
+    gender;
+    age;
+    computerUse;
+    groupID = generate_groupID();
+    wpm = [];
+    actions = [];
 
     getCopy(){
         let copy = new subject();
-        copy.gender = this.#gender;
-        copy.age = this.#age;
-        copy.computerUse = this.#computerUse;
-        copy.groupID = this.#groupID;
-        copy.wpm = this.#wpm;
-        copy.actions = this.#actions;
+        copy.gender = this.gender;
+        copy.age = this.age;
+        copy.computerUse = this.computerUse;
+        copy.groupID = this.groupID;
+        copy.wpm = this.wpm;
+        copy.actions = this.actions;
 
         return copy;
     }
 
     logAction(){
-        this.#actions.push(new Date().getTime());
+        this.actions.push(new Date().getTime());
     }
 
     toString(){
@@ -27,51 +27,51 @@ export default class subject {
     }
 
     set gender(genderInput) {
-        this.#gender = genderInput;
+        this.gender = genderInput;
     }
 
     set age(ageInput) {
-        this.#age = ageInput;
+        this.age = ageInput;
     }
 
     set computerUse(computerUseInput) {
-        this.#computerUse = computerUseInput;
+        this.computerUse = computerUseInput;
     }
 
     set groupID(groupIDInput){
-        this.#groupID = groupIDInput;
+        this.groupID = groupIDInput;
     }
 
     set wpm(wpmInput){
-        this.#wpm.push(wpmInput);
+        this.wpm.push(wpmInput);
     }
 
     set actions(actionsInput){
-        this.#actions.push(actionsInput);
+        this.actions.push(actionsInput);
     }
 
     get groupID() {
-        return this.#groupID;
+        return this.groupID;
     }
 
     get computerUse() {
-        return this.#computerUse;
+        return this.computerUse;
     }
 
     get age() {
-        return this.#age;
+        return this.age;
     }
 
     get gender() {
-        return this.#gender;
+        return this.gender;
     }
 
     get wpm(){
-        return this.#wpm;
+        return this.wpm;
     }
 
     get actions(){
-        return this.#actions;
+        return this.actions;
     }
 }
 
