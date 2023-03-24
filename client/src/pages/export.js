@@ -7,7 +7,7 @@ export default function Export(props){
         <div className={"content"}>
             <h1>The JSON Data we accumulated during the experiment:</h1>
             <p>{props.context.experimentState.toString()}</p>
-            <SaveButton context={props.context.experimentState}/>
+            <SaveButton context={props.context}/>
         </div>
     )
 }
