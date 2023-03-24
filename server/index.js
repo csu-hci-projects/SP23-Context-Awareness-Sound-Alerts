@@ -1,5 +1,6 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+import express from 'express'
+import bodyParser from 'body-parser'
+import {addToData} from "./db.js";
 
 const app = express()
 const port = 22222
@@ -12,7 +13,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/addData', (request, response)=>{
-    console.log("Got POST /addData" + JSON.stringify(request.body));
+    const payload = request.body;
+    console.log("Got POST at /addData" + JSON.stringify(payload));
+    addToData(payload)
     response.send({ success: "true"});
 })
 

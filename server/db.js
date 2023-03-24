@@ -1,19 +1,22 @@
+import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-
-import { mongoConn } from "./creds/mongoKey";
+import { mongoConn } from "./creds/mongoKey.js";
 
 const client = new MongoClient(mongoConn, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-client.connect(err => {
-    const collection = client.db("test").collection("devices");
-    // perform actions on the collection object
-    client.close()
-        .catch((err)=>{
-            console.log("Error closing database: " + err)
-        });
-})
-    .catch((err)=>{
-        console.log("Error Connecting to database: " + err)
-    });
+export async function addToData(data){
+    try {
+        console.log("addToData " + JSON.stringify(data))
+        const database = client.db("test");
+        const collection = database.collection("test-collection");
+
+        const result = await collection.insertOne(data);
+        console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    } finally {
+        await client.close();
+    }
+}
+
+
+
 
