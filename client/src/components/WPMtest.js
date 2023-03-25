@@ -1,16 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import * as PropTypes from "prop-types";
-import Sound from "./Sound";
-import {Button} from "reactstrap";
 
 export default function WPMtest(props){
     function DisplayWPM(props) {
-        useEffect(()=>{
-            let updateObject = props.context.experimentState.getCopy();
-            updateObject.wpm = [props.wpm];
-            props.context.setExperimentState(updateObject);
-        },[])
-
         return(
             <p>Your WPM: {props.wpm}</p>
         )
@@ -31,6 +23,12 @@ export default function WPMtest(props){
         currentSentence.length + 1,
         text.length
     );
+
+    useEffect(()=>{
+        let updateObject = props.context.experimentState.getCopy();
+        updateObject.wpm = [wpm];
+        props.context.setExperimentState(updateObject);
+    },[wpm])
 
     const handleKeyPress = (event) => {
         if (startTime === null) {
@@ -71,7 +69,7 @@ export default function WPMtest(props){
             )}
             {startTime !== null && endTime !== null && (
                 <div>
-                    <DisplayWPM context={props.context} wpm={wpm}/>
+                    <DisplayWPM wpm={wpm}/>
                     <button onClick={handleRestart}>Restart</button>
                 </div>
             )}

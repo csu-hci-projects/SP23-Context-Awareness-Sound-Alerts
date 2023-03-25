@@ -1,11 +1,11 @@
-import React, {useState, useRef, useEffect} from "react";
-import NavBar from "../components/NavBar";
-import * as PropTypes from "prop-types";
+import React, {useState} from "react";
 import {Button} from "reactstrap";
 import Sound from "../components/Sound";
 import WPMtest from "../components/WPMtest";
+import AlertSound from "../components/alert-sound";
 export default function Experiment(props) {
 
+    const [phaseStart, setPhaseStart] = useState(undefined);
     const handleActionClick = () => {
         let updateObject = props.context.experimentState.getCopy();
         updateObject.logAction();
@@ -15,6 +15,7 @@ export default function Experiment(props) {
   return (
     <div className={"content"}>
       <Sound/>
+      <AlertSound url={"http://localhost:22222/airport-ambience-mexico-5min48k24b.flac"}/>
       <h1>Words Per Minute Test</h1>
       <Button className={"action-button"} onClick={handleActionClick}>Click Me!</Button>
       <WPMtest context={props.context}/>
