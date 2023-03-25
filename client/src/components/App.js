@@ -6,13 +6,14 @@ import Experiment from "../pages/experiment";
 import subject from "./Subject";
 import Export from "../pages/export";
 import NavBar from "./NavBar";
+import ExperimentController from "./experement-controller";
 
 
 export default function App(){
 
     // Set the page to load first here, handy if you're working on a specific page
     // and don't want to have to click through every time it reloads.
-    const [pageIndex, setPageIndex] = useState(0)
+    const [pageIndex, setPageIndex] = useState(3)
     const [experimentState, setExperimentState] = useState(new subject())
 
     const context = {
@@ -41,7 +42,7 @@ export default function App(){
 
     const experiment = {
         name: "experiment",
-        element: <Experiment context={context}/>
+        element: <ExperimentController context={context}/>
     }
 
     const exportData = {

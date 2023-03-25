@@ -1,9 +1,6 @@
 import '../App.css';
-import NavBar from "../components/NavBar";
-import Data from "../components/Data";
-import React from "react";
-import Timer from "../components/timer";
 import React, {useEffect, useState} from "react";
+import Timer from "../components/timer";
 import getExperimentCount from "../api/getExperimentCount";
 
 export default function Root(props) {
