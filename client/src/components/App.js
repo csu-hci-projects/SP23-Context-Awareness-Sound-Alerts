@@ -12,7 +12,7 @@ export default function App(){
 
     // Set the page to load first here, handy if you're working on a specific page
     // and don't want to have to click through every time it reloads.
-    const [pageIndex, setPageIndex] = useState(3)
+    const [pageIndex, setPageIndex] = useState(0)
     const [experimentState, setExperimentState] = useState(new subject())
 
     const context = {
