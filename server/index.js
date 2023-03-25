@@ -1,7 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import {addToData} from "./db.js";
+import {addToData} from "./db.js"
+import {getCount} from "./getCount.js"
 
 const app = express()
 const port = 22222
@@ -12,6 +13,17 @@ app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
+})
+
+app.get('/getCount', (req, res) =>{
+    getCount()
+        .then((count)=>{
+            res.send(JSON.stringify(count))
+        })
+        .catch((err)=>{
+            console.log("ERROR getting count")
+            res.send(JSON.stringify(err))
+        })
 })
 
 app.post('/addData', (request, response)=>{
