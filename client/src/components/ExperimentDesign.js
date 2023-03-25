@@ -1,5 +1,3 @@
-export default class Experiments {}
-
 // An individual experiment
 const exp0 = {
     environment: "Right By Da Beach BBooooIIIIII",
@@ -27,19 +25,17 @@ const exp2 = {
 
 // All experiements will get packaged in an array
 // Along with which sequencial number of the experiment this is
-const experimentConfigA = {
+export const experimentConfigA = {
     expID: 0,
     order: [exp0, exp1, exp2]
 }
 
-const experimentConfigB = {
+export const experimentConfigB = {
     expID: 1,
     order: [exp1, exp2, exp0]
 }
 
-const experimentConfigC = {
+export const experimentConfigC = {
     expID: 2,
     order: [exp2, exp0, exp1]
 }
-
-export {experimentConfigA, experimentConfigB, experimentConfigC};
