@@ -1,13 +1,18 @@
 {
-  "dependencies": {
-    "express": "^4.18.2"
-  },
-  "name": "server",
+  "name": "CASA-backend-server",
   "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

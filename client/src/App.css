@@ -102,3 +102,8 @@
   cursor: pointer;
   background-color: #00ff15;
 }
+
+.save-button {
+  display: flex;
+  flex-direction: column;
+}
