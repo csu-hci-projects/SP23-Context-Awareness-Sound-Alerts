@@ -1,8 +1,12 @@
+import getExperimentCount from "../api/getExperimentCount"
+import { experimentConfigA, experimentConfigB, experimentConfigC } from "../components/ExperimentDesign";
+
 export default class subject {
     gender;
     age;
     computerUse;
     groupID = generate_groupID();
+    assignedExperiment = AssignExp(this.groupID);
     wpm = [];
     actions = [];
 
@@ -14,6 +18,7 @@ export default class subject {
         copy.groupID = this.groupID;
         copy.wpm = this.wpm;
         copy.actions = this.actions;
+        copy.assignedExperiment = this.assignedExperiment;
 
         return copy;
     }
@@ -75,10 +80,13 @@ export default class subject {
     }
 }
 
-function generate_groupID(entries) {
+function generate_groupID() {
     var unique_id_num; //store unique id number
     var group_char;
     var final_id;
+    let entries;
+    getExperimentCount().then((count)=> {entries = count});
+
 
     switch (entries) {
         case 0:
@@ -133,4 +141,23 @@ function generate_groupID(entries) {
     unique_id_num = unique_id_num.toString();
     final_id = group_char.concat("-", unique_id_num);
     return final_id;
+}
+
+function AssignExp(groupID) {
+
+    let group_char = groupID.charAt(0)
+    var experiment_group;
+
+    switch (group_char) {
+        case 'A':
+            experiment_group = experimentConfigA;
+            break;
+        case 'B':
+            experiment_group = experimentConfigB;
+            break;
+        default:
+            experiment_group = experimentConfigC;
+    }
+
+    return experiment_group;
 }
