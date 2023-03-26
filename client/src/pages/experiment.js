@@ -25,6 +25,7 @@ export default function Experiment(props) {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [wpm, setWpm] = useState(0);
+  const [inputStyle, setInputStyle] = useState({});
   const inputRef = useRef(null);
 
   const currentSentence = text.split(".")[currentIndex];
@@ -46,6 +47,10 @@ export default function Experiment(props) {
         setCurrentIndex(currentIndex + 1);
         event.target.value = "";
       }
+    } else if (currentSentence.startsWith(event.target.value)) {
+      setInputStyle({});
+    } else {
+      setInputStyle({ backgroundColor: "#ffcccc" });
     }
   };
 
@@ -77,7 +82,7 @@ export default function Experiment(props) {
       <h1>Words Per Minute Test</h1>
       <Button className={"action-button"} onClick={handleActionClick}>Click Me!</Button>
       <p><b>{currentSentence}</b></p>
-      <textarea placeholder="Type the above sentence as fast and as accurately as possible" rows={3} cols={50} ref={inputRef} onKeyUp={handleKeyPress} />
+      <textarea placeholder="Type the above sentence as fast and as accurately as possible" rows={3} cols={50} ref={inputRef} onKeyUp={handleKeyPress} style={inputStyle} />
       {startTime !== null && endTime === null && (
         <p>Typing...</p>
       )}
