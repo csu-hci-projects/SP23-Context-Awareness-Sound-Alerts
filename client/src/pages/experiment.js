@@ -1,9 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button} from "reactstrap";
 import Sound from "../components/Sound";
 import WPMtest from "../components/WPMtest";
-import AlertSound from "../components/alert-sound";
-import ExperimentController from "../components/experement-controller";
+
 export default function Experiment(props) {
 
     const handleActionClick = () => {
@@ -14,10 +13,12 @@ export default function Experiment(props) {
 
     return(
         <div className={"phase"}>
-            <Sound/>
+            <h3>The current environment:{props.config.environment}</h3>
+            <Sound url={props.config.backgroundSound}/>
             <h1>Words Per Minute Test</h1>
-            <Button className={"action-button"} onClick={handleActionClick}>Click Me When You Hear An Alert!</Button>
-            <WPMtest context={props.context}/>
+            <Button className={"action-button"} onClick={handleActionClick}>Click Here When You Hear An Alert</Button>
+            <WPMtest context={props.context} text={props.config.typingText}/>
+            <Button className={"navButton"} onClick={props.nextPhase}>Manual Phase Advance</Button>
         </div>
     )
 }

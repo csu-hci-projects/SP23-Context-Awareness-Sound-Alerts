@@ -13,7 +13,7 @@ export default function App(){
 
     // Set the page to load first here, handy if you're working on a specific page
     // and don't want to have to click through every time it reloads.
-    const [pageIndex, setPageIndex] = useState(3)
+    const [pageIndex, setPageIndex] = useState(0)
     const [experimentState, setExperimentState] = useState(new subject())
 
     const context = {
@@ -50,6 +50,15 @@ export default function App(){
         element: <Export context={context}/>
     }
 
+    // We don't want to show the nav bar during the experiment
+    const showNavBar = ()=> {
+        if(pageIndex == 3){
+            return null
+        } else {
+            return <NavBar context={context}/>
+        }
+    }
+
     // Order that the pages will appear
     const pageOrder = [root, hearingTest, demographicsForm, experiment, exportData]
 
@@ -58,7 +67,7 @@ export default function App(){
             <div className={"content-container"}>
                 {pageOrder[pageIndex].element}
             </div>
-            <NavBar context={context}/>
+            {showNavBar()}
         </div>
 
     )

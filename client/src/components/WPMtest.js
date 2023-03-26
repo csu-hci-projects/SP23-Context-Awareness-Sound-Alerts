@@ -9,9 +9,7 @@ export default function WPMtest(props){
     }
 
     DisplayWPM.propTypes = {wpm: PropTypes.number};
-    const [text, setText] = useState(
-        "The quick brown fox jumps over the lazy dog."
-    );
+    const [text, setText] = useState(props.text);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);

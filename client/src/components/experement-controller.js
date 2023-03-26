@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Experiment from "../pages/experiment";
+import BreakTimer from "./break-timer";
 
 export default function ExperimentController(props){
 
@@ -35,17 +36,33 @@ export default function ExperimentController(props){
     const [expConfig, setExpConfig] = useState(experimentConfig)
 // ****************************************************************
 
+    const NUM_PHASES = 3;
     const [currentPhase, setCurrentPhase] = useState(0)
-    const [experimentComplete, setExperiementComplete] = useState(false)
     const [breakTime, setBreakTime] = useState(false)
 
     const nextPhase = ()=> {
+       if(currentPhase >= NUM_PHASES - 1){
+           // Finished last phase, advance page
+           props.context.setPageIndex(props.context.pageIndex + 1)
+       } else {
+           // Set up the next phase and run a break timer first
+           setCurrentPhase(currentPhase + 1)
+           setBreakTime(true)
+       }
+    }
 
+    const isItBreakTime = ()=> {
+        if(breakTime){
+            return <BreakTimer setBreakTime={setBreakTime}/>
+        } else {
+            return <Experiment context={props.context} config={expConfig.order[currentPhase]} nextPhase={nextPhase}/>
+        }
     }
 
     return (
         <div className={"content"}>
-            <Experiment context={props.context} config={expConfig[currentPhase]} phase={currentPhase}/>
+            <p>Current Phase: {currentPhase + 1}</p>
+            {isItBreakTime()}
         </div>
     );
 }

@@ -19,7 +19,6 @@ export default function Root(props) {
         <h1>Experiment Portal Home</h1>
         <p>Number of experiments already performed:</p>
         <p>{count ? count : "Hmmm... Maybe you're not connected to the server..."}</p>
-        <Timer/>
     </div>
   );
 }
