@@ -3,7 +3,7 @@ import {Button} from "reactstrap";
 
 export default function Sound(props){
 
-    const [audio] = useState(new Audio("http://localhost:22222/airport-ambience-mexico-5min48k24b.flac"))
+    const [audio] = useState(new Audio("http://localhost:22222/" + props.url))
     const [play, setPlay] = useState(false)
 
     useEffect(()=>{
@@ -24,7 +24,7 @@ export default function Sound(props){
 
     return(
         <div>
-            <p>We'll make this button go away, thought it was handy for now.</p>
+            <p>Sound</p>
             <Button onClick={handleClick}>Play / Pause</Button>
         </div>
     )

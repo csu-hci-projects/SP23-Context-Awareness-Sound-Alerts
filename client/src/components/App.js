@@ -6,6 +6,7 @@ import Experiment from "../pages/experiment";
 import subject from "./Subject";
 import Export from "../pages/export";
 import NavBar from "./NavBar";
+import ExperimentController from "./experement-controller";
 
 
 export default function App(){
@@ -41,12 +42,21 @@ export default function App(){
 
     const experiment = {
         name: "experiment",
-        element: <Experiment context={context}/>
+        element: <ExperimentController context={context}/>
     }
 
     const exportData = {
         name: "export",
         element: <Export context={context}/>
+    }
+
+    // We don't want to show the nav bar during the experiment
+    const showNavBar = ()=> {
+        if(pageIndex == 3){
+            return null
+        } else {
+            return <NavBar context={context}/>
+        }
     }
 
     // Order that the pages will appear
@@ -57,7 +67,7 @@ export default function App(){
             <div className={"content-container"}>
                 {pageOrder[pageIndex].element}
             </div>
-            <NavBar context={context}/>
+            {showNavBar()}
         </div>
 
     )
