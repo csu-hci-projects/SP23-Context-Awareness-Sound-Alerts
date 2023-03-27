@@ -9,13 +9,13 @@ export default class subject {
     groupID = generate_groupID();
     assignedExperiment = AssignExp(this.groupID);
     wpm = [];
-    actions = [];
+    phaseData = [];
 
     #NUMBER_OF_PHASES = 3;
 
     constructor() {
         for (let i = 0; i > this.#NUMBER_OF_PHASES; i++){
-            this.actions.push(new UserActionData())
+            this.phaseData.push(new UserActionData())
         }
     }
 
@@ -26,7 +26,7 @@ export default class subject {
         copy.computerUse = this.computerUse;
         copy.groupID = this.groupID;
         copy.wpm = this.wpm;
-        copy.actions = this.actions;
+        copy.phaseData = this.phaseData;
         copy.assignedExperiment = this.assignedExperiment;
 
         return copy;
@@ -57,7 +57,7 @@ export default class subject {
     }
 
     set actions(actionsInput){
-        this.actions.push(actionsInput);
+        this.phaseData.push(actionsInput);
     }
 
     get groupID() {
@@ -81,7 +81,7 @@ export default class subject {
     }
 
     get actions(){
-        return this.actions;
+        return this.phaseData;
     }
 }
 

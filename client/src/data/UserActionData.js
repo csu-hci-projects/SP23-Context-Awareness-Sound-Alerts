@@ -1,10 +1,10 @@
 export class UserActionData{
-    backgroundSound
+    backgroundSound;
     experimentStartTime;
     experimentEndTime;
-    alert1Time
-    alert2Time
-    alert3Time
+    alert1Time = 0;
+    alert2Time = 0;
+    alert3Time = 0;
     userClick = [];
 
     logAction(){
@@ -12,7 +12,7 @@ export class UserActionData{
     }
 
     // Click data is stored in milliseconds since the UNIX epoch
-    // This returns the user click times relative to the experiment phase start
+    // Returns the user click times relative to the experiment phase start time
     getClickArrayRelativeTime(){
         let result = [];
         this.userClick.map((i)=>{

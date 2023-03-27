@@ -1,15 +1,21 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button} from "reactstrap";
 import Sound from "../components/Sound";
 import WPMtest from "../components/WPMtest";
 
 export default function Experiment(props) {
+    const phaseData = props.context.experimentState.phaseData[props.currentPhase]
 
-    const [expStart, setExpStart] = useState(setupNewActionLog);
+    // Set the experiment start time in the data
+    useEffect(()=>{
+        phaseData.experimentStartTime = new Date().getTime();
+        console.log("Experiment phase " + props.currentPhase + " started at " +
+            phaseData.experimentStartTime);
+    }, [])
 
     const handleActionClick = () => {
         let updateObject = props.context.experimentState.getCopy();
-        updateObject.logAction();
+        phaseData.logAction();
         props.context.setExperimentState(updateObject);
     }
 
