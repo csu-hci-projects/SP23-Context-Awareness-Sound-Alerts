@@ -10,7 +10,7 @@ export default function Data(props){
             <p>Group ID: {props.subject.groupID ? props.subject.groupID : null}</p>
             <p>Assigned Experiment: {props.subject.assignedExperiment ? JSON.stringify(props.subject.assignedExperiment.expID) : null}</p>
             <p>WPMs: {props.subject.wpm}</p>
-            <p>Clicks: {props.subject.actions}</p>
+            <p>Clicks: {JSON.stringify(props.subject.actions)}</p>
         </div>
     )
 }

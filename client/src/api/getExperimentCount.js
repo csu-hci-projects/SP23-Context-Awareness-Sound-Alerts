@@ -5,6 +5,5 @@ export default async function getExperimentCount(){
         mode: "cors"
     }
     const response = await fetch(url, config);
-    console.log(response);
     return response.json();
 }

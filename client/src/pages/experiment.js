@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button} from "reactstrap";
 import Sound from "../components/Sound";
 import WPMtest from "../components/WPMtest";
 
 export default function Experiment(props) {
+
+    const [expStart, setExpStart] = useState(setupNewActionLog);
 
     const handleActionClick = () => {
         let updateObject = props.context.experimentState.getCopy();

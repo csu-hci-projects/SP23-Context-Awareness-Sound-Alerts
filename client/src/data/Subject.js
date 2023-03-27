@@ -1,5 +1,6 @@
 import getExperimentCount from "../api/getExperimentCount"
 import { experimentConfigA, experimentConfigB, experimentConfigC } from "../components/ExperimentDesign";
+import {UserActionData} from "./UserActionData";
 
 export default class subject {
     gender;
@@ -9,6 +10,14 @@ export default class subject {
     assignedExperiment = AssignExp(this.groupID);
     wpm = [];
     actions = [];
+
+    #NUMBER_OF_PHASES = 3;
+
+    constructor() {
+        for (let i = 0; i > this.#NUMBER_OF_PHASES; i++){
+            this.actions.push(new UserActionData())
+        }
+    }
 
     getCopy(){
         let copy = new subject();
@@ -21,10 +30,6 @@ export default class subject {
         copy.assignedExperiment = this.assignedExperiment;
 
         return copy;
-    }
-
-    logAction(){
-        this.actions.push(new Date().getTime());
     }
 
     toString(){
