@@ -81,9 +81,9 @@ export default class subject {
 }
 
 function generate_groupID() {
-    var unique_id_num; //store unique id number
-    var group_char;
-    var final_id;
+    let unique_id_num; //store unique id number
+    let group_char;
+    let final_id;
     let entries;
     getExperimentCount().then((count)=> {entries = count});
 
@@ -146,7 +146,7 @@ function generate_groupID() {
 function AssignExp(groupID) {
 
     let group_char = groupID.charAt(0)
-    var experiment_group;
+    let experiment_group;
 
     switch (group_char) {
         case 'A':
