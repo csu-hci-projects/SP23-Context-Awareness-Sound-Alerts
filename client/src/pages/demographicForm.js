@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Form, FormGroup, Label, Input, FormText, Table, Col, Row} from 'reactstrap';
 import NavBar from "../components/NavBar";
-import subject from "../components/Subject"
+import subject from "../data/Subject"
 import Data from "../components/Data";
 
 export default function DemographicForm(props){

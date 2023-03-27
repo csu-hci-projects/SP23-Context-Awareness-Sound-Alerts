@@ -3,7 +3,7 @@ import Root from "../pages/Root";
 import HearingTest from "../pages/hearingTest";
 import DemographicForm from "../pages/demographicForm";
 import Experiment from "../pages/experiment";
-import subject from "./Subject";
+import subject from "../data/Subject";
 import Export from "../pages/export";
 import NavBar from "./NavBar";
 import ExperimentController from "./experement-controller";

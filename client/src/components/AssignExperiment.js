@@ -1,4 +1,4 @@
-import subject from "./Subject";
+import subject from "../data/Subject";
 import { experimentConfigA, experimentConfigB, experimentConfigC } from "./ExperimentDesign.js";
 
 
