@@ -6,6 +6,14 @@ export class UserActionData{
     alert2Time = 0;
     alert3Time = 0;
     userClick = [];
+    // TODO: data doesn't make it here yet
+    wpm;
+    // TODO: errors aren't calculated yet
+    errors;
+
+    // set experimentStartTime(startTime){
+    //     this.experimentStartTime = startTime;
+    // }
 
     logAction(){
         this.userClick.push(new Date().getTime());
@@ -21,5 +29,4 @@ export class UserActionData{
 
         return result;
     }
-
 }

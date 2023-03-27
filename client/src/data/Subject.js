@@ -14,7 +14,7 @@ export default class subject {
     #NUMBER_OF_PHASES = 3;
 
     constructor() {
-        for (let i = 0; i > this.#NUMBER_OF_PHASES; i++){
+        for (let i = 0; i < this.#NUMBER_OF_PHASES; i++){
             this.phaseData.push(new UserActionData())
         }
     }
@@ -34,7 +34,7 @@ export default class subject {
 
     toString(){
         return JSON.stringify(this);
-    }
+        }
 
     set gender(genderInput) {
         this.gender = genderInput;

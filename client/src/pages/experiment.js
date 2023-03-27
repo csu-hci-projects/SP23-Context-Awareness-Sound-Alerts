@@ -6,7 +6,7 @@ import WPMtest from "../components/WPMtest";
 export default function Experiment(props) {
     const phaseData = props.context.experimentState.phaseData[props.currentPhase]
 
-    // Set the experiment start time in the data
+    // Set the experiment start time in the data once the experiment starts
     useEffect(()=>{
         phaseData.experimentStartTime = new Date().getTime();
         console.log("Experiment phase " + props.currentPhase + " started at " +
@@ -14,8 +14,9 @@ export default function Experiment(props) {
     }, [])
 
     const handleActionClick = () => {
+        // This weird copying is just for the live data updating
         let updateObject = props.context.experimentState.getCopy();
-        phaseData.logAction();
+        updateObject.phaseData[props.currentPhase].logAction();
         props.context.setExperimentState(updateObject);
     }
 

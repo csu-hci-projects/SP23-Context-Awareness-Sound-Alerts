@@ -53,6 +53,8 @@ export default function App(){
     // We don't want to show the nav bar during the experiment
     const showNavBar = ()=> {
         if(pageIndex == 3){
+            // Temporary so we can watch data update live
+            // return null
             return <NavBar context={context}/>
         } else {
             return <NavBar context={context}/>
