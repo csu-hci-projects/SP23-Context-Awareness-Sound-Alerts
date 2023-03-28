@@ -20,17 +20,17 @@ app.get('/getCount', (req, res) =>{
         .then((count)=>{
             const returnPayolad = JSON.stringify(count);
             res.send(returnPayolad);
-            console.log("Sending return payload " + returnPayolad);
+            console.log("Sending return payload " + returnPayolad+ "\n");
         })
         .catch((err)=>{
-            console.log("ERROR getting count");
+            console.log("ERROR getting count"+ "\n");
             res.send(JSON.stringify(err));
         })
 })
 
 app.post('/addData', (request, response)=>{
     const payload = request.body;
-    console.log("Got POST at /addData" + JSON.stringify(payload));
+    console.log("Got POST at /addData" + JSON.stringify(payload) + "\n");
     addToData(payload)
         .then((res)=>{
             response.send(JSON.stringify(res));
