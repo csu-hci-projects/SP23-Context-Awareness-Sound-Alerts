@@ -108,3 +108,12 @@
   display: flex;
   flex-direction: column;
 }
+
+.timer-time-left {
+  text-align: left;
+  width: 100%
+}
+
+.timer {
+  width: 100%;
+}
