@@ -1,4 +1,4 @@
-# SP23-Context-Awareness-Sound-Alerts
+# SP23-Context-Awareness-BackgroundSound-Alerts
 
 ## Checkpoint 1
 
@@ -21,7 +21,7 @@ Set up Trello board for project tracking. Implemented WPM counter and typing pro
 * Visual que that a typing error has been made, input text box does not respond to incorrect entry
 #### Dan Butcher:
 * Implement simple hearing test
-* Sound design for notifications and background noises.
+* BackgroundSound design for notifications and background noises.
 #### Zack Lamb:
 * Visual designs for individual background sound phase pages
 * Build rest counter page with timer in between background sound phases

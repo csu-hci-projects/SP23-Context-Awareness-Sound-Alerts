@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Button} from "reactstrap";
 
-export default function Sound(props){
+export default function BackgroundSound(props){
 
     const [audio] = useState(new Audio("http://localhost:22222/" + props.url))
     const [play, setPlay] = useState(false)
@@ -10,7 +10,7 @@ export default function Sound(props){
         if(play){
             audio.play()
                 .catch((err)=>{
-                    console.log("Error Playing Sound: " + err)
+                    console.log("Error Playing BackgroundSound: " + err)
                 })
             console.log("Audio Playing");
         }else{
