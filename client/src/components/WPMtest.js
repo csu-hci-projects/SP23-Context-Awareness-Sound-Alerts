@@ -24,9 +24,7 @@ export default function WPMtest(props){
     );
 
     useEffect(()=>{
-        let updateObject = props.context.experimentState.getCopy();
-        updateObject.wpm = [wpm];
-        props.context.setExperimentState(updateObject);
+        props.phaseData.wpm = wpm;
     },[wpm])
 
     const handleKeyPress = (event) => {

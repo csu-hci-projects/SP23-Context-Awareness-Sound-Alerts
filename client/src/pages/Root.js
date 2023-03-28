@@ -10,8 +10,8 @@ export default function Root(props) {
         getExperimentCount()
             .then((response)=>{
                 setCount(response.count)
-                console.log(response)
             });
+        console.log("getExperimentCount from root component mount")
     }, [])
 
   return (

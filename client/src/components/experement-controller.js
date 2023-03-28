@@ -45,6 +45,9 @@ export default function ExperimentController(props){
            // Finished last phase, advance page
            props.context.setPageIndex(props.context.pageIndex + 1)
        } else {
+           // Set experiment end time
+           props.context.experimentState.phaseData[currentPhase]
+               .experimentEndTime = new Date().getTime();
            // Set up the next phase and run a break timer first
            setCurrentPhase(currentPhase + 1)
            setBreakTime(true)
@@ -55,7 +58,7 @@ export default function ExperimentController(props){
         if(breakTime){
             return <BreakTimer setBreakTime={setBreakTime}/>
         } else {
-            return <Experiment context={props.context} config={expConfig.order[currentPhase]} nextPhase={nextPhase}/>
+            return <Experiment context={props.context} config={expConfig.order[currentPhase]} nextPhase={nextPhase} currentPhase={currentPhase}/>
         }
     }
 

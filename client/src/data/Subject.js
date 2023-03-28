@@ -1,35 +1,44 @@
 import getExperimentCount from "../api/getExperimentCount"
 import { experimentConfigA, experimentConfigB, experimentConfigC } from "../components/ExperimentDesign";
+import {UserActionData} from "./UserActionData";
 
 export default class subject {
-    gender;
-    age;
-    computerUse;
-    groupID = generate_groupID();
-    assignedExperiment = AssignExp(this.groupID);
+    gender = undefined;
+    age = undefined;
+    computerUse = undefined;
+    groupID = undefined;
+    assignedExperiment = undefined;
     wpm = [];
-    actions = [];
+    phaseData = [];
+
+    #NUMBER_OF_PHASES = 3;
+
+    constructor() {
+        for (let i = 0; i < this.#NUMBER_OF_PHASES; i++){
+            this.phaseData.push(new UserActionData())
+        }
+
+        this.groupID = generate_groupID();
+        this.assignedExperiment = AssignExp(this.groupID);
+    }
+
 
     getCopy(){
         let copy = new subject();
         copy.gender = this.gender;
         copy.age = this.age;
         copy.computerUse = this.computerUse;
-        copy.groupID = this.groupID;
         copy.wpm = this.wpm;
-        copy.actions = this.actions;
+        copy.phaseData = this.phaseData;
+        copy.groupID = this.groupID;
         copy.assignedExperiment = this.assignedExperiment;
-
+        
         return copy;
-    }
-
-    logAction(){
-        this.actions.push(new Date().getTime());
     }
 
     toString(){
         return JSON.stringify(this);
-    }
+        }
 
     set gender(genderInput) {
         this.gender = genderInput;
@@ -52,7 +61,7 @@ export default class subject {
     }
 
     set actions(actionsInput){
-        this.actions.push(actionsInput);
+        this.phaseData.push(actionsInput);
     }
 
     get groupID() {
@@ -76,16 +85,17 @@ export default class subject {
     }
 
     get actions(){
-        return this.actions;
+        return this.phaseData;
     }
 }
 
 function generate_groupID() {
-    var unique_id_num; //store unique id number
-    var group_char;
-    var final_id;
+    let unique_id_num; //store unique id number
+    let group_char;
+    let final_id;
     let entries;
     getExperimentCount().then((count)=> {entries = count});
+    console.log("getExperimentCount from Subject constructor")
 
 
     switch (entries) {
@@ -146,7 +156,7 @@ function generate_groupID() {
 function AssignExp(groupID) {
 
     let group_char = groupID.charAt(0)
-    var experiment_group;
+    let experiment_group;
 
     switch (group_char) {
         case 'A':
