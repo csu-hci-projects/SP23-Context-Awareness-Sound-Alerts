@@ -3,11 +3,11 @@ import { experimentConfigA, experimentConfigB, experimentConfigC } from "../comp
 import {UserActionData} from "./UserActionData";
 
 export default class subject {
-    gender;
-    age;
-    computerUse;
-    groupID = generate_groupID();
-    assignedExperiment = AssignExp(this.groupID);
+    gender = undefined;
+    age = undefined;
+    computerUse = undefined;
+    groupID = undefined;
+    assignedExperiment = undefined;
     wpm = [];
     phaseData = [];
 
@@ -17,18 +17,22 @@ export default class subject {
         for (let i = 0; i < this.#NUMBER_OF_PHASES; i++){
             this.phaseData.push(new UserActionData())
         }
+
+        this.groupID = generate_groupID();
+        this.assignedExperiment = AssignExp(this.groupID);
     }
+
 
     getCopy(){
         let copy = new subject();
         copy.gender = this.gender;
         copy.age = this.age;
         copy.computerUse = this.computerUse;
-        copy.groupID = this.groupID;
         copy.wpm = this.wpm;
         copy.phaseData = this.phaseData;
+        copy.groupID = this.groupID;
         copy.assignedExperiment = this.assignedExperiment;
-
+        
         return copy;
     }
 
@@ -91,6 +95,7 @@ function generate_groupID() {
     let final_id;
     let entries;
     getExperimentCount().then((count)=> {entries = count});
+    console.log("getExperimentCount from Subject constructor")
 
 
     switch (entries) {

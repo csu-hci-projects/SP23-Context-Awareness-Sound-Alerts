@@ -18,11 +18,13 @@ app.get('/', (req, res) => {
 app.get('/getCount', (req, res) =>{
     getCount()
         .then((count)=>{
-            res.send(JSON.stringify(count))
+            const returnPayolad = JSON.stringify(count);
+            res.send(returnPayolad);
+            console.log("Sending return payload " + returnPayolad);
         })
         .catch((err)=>{
-            console.log("ERROR getting count")
-            res.send(JSON.stringify(err))
+            console.log("ERROR getting count");
+            res.send(JSON.stringify(err));
         })
 })
 
@@ -31,7 +33,7 @@ app.post('/addData', (request, response)=>{
     console.log("Got POST at /addData" + JSON.stringify(payload));
     addToData(payload)
         .then((res)=>{
-            response.send(JSON.stringify(res))
+            response.send(JSON.stringify(res));
         })
 })
 
@@ -39,5 +41,5 @@ app.post('/addData', (request, response)=>{
 app.use(express.static('media'));
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
+    console.log(`Listening on port ${port}`);
 })

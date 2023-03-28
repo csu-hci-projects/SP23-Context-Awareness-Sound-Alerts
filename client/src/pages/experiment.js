@@ -26,7 +26,7 @@ export default function Experiment(props) {
             <Sound url={props.config.backgroundSound}/>
             <h1>Words Per Minute Test</h1>
             <Button className={"action-button"} onClick={handleActionClick}>Click Here When You Hear An Alert</Button>
-            <WPMtest context={props.context} text={props.config.typingText}/>
+            <WPMtest context={props.context} text={props.config.typingText} phaseData={phaseData}/>
             <Button className={"navButton"} onClick={props.nextPhase}>Manual Phase Advance</Button>
         </div>
     )
