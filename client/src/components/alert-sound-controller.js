@@ -26,11 +26,11 @@ export default function AlertSoundController(props){
     const [alertTimes, setAlertTimes] = useState(getRandomAlertTimes());
     const [currentSound, setCurrentSound] = useState(0);
     const [elapsed, setElapsed] = useState(new Date())
+    const [played, setPlayed] = useState([false, false, false])
 
     setTimeout(()=>{
         const currentTime_ms = new Date();
         setElapsed(new Date(currentTime_ms - controllerStart));
-        console.log("CurrentTime: " + currentTime_ms + "\n Next alert: " + alertTimes[nextAlert])
 
         if (alertTimes && currentTime_ms.getTime() >= alertTimes[nextAlert]){
             console.log("Triggering alert sound!")
@@ -38,9 +38,10 @@ export default function AlertSoundController(props){
             const soundToPlay = props.alertOrder[nextAlert]
             setCurrentSound(new Audio("http://localhost:22222/"
                 + alertConfig.sounds[soundToPlay].file));
+            currentSound.volume = alertConfig.sounds[soundToPlay].volume;
             currentSound.play();
 
-            setCurrentSound(currentSound + 1)
+            setNextAlert(nextAlert + 1);
         }
     }, 100)
 

@@ -1,11 +1,14 @@
 const alertSound1 = {
     file: "one.wav",
+    volume: 1
 }
 const alertSound2 = {
     file: "two.wav",
+    volume: 1
 }
 const alertSound3 = {
     file: "three.wav",
+    volume: 1
 }
 
 export const alertConfig = {
