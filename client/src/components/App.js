@@ -13,13 +13,8 @@ export default function App(){
 
     // Set the page to load first here, handy if you're working on a specific page
     // and don't want to have to click through every time it reloads.
-    const [pageIndex, setPageIndex] = useState(0)
-    const [experimentState, setExperimentState] = useState(undefined)
-
-    useEffect(()=>{
-        setExperimentState(new subject());
-        console.log("New subject from App Component Mount");
-    }, [])
+    const [pageIndex, setPageIndex] = useState(0);
+    const [experimentState, setExperimentState] = useState(new subject(undefined, undefined));
 
     const context = {
         pageIndex: pageIndex,
@@ -29,7 +24,6 @@ export default function App(){
         numPages: 5
     }
 
-    // Routes
     const root = {
         name: "start",
         element: <Root context={context}/>

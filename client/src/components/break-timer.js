@@ -7,7 +7,7 @@ export default function BreakTimer(props){
     return (
         <div className={"break-timer"}>
             <p>This should be a break timer</p>
-            <Timer/>
+            <Timer setBreakTime={props.setBreakTime}/>
             <Button className={"navButton"} onClick={()=>props.setBreakTime(false)}>manual advance</Button>
         </div>
     )

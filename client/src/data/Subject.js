@@ -13,26 +13,26 @@ export default class subject {
 
     #NUMBER_OF_PHASES = 3;
 
-    constructor() {
+    constructor(knownGroupID, knownAssignedExperiment) {
         for (let i = 0; i < this.#NUMBER_OF_PHASES; i++){
             this.phaseData.push(new UserActionData())
         }
 
-        this.groupID = generate_groupID();
-        this.assignedExperiment = AssignExp(this.groupID);
+        // If GroupID of AssignedExperiment is already known, don't
+        //   use an API call to generate new data
+        this.groupID = knownGroupID ? knownGroupID : generate_groupID();
+        this.assignedExperiment = knownAssignedExperiment ? knownAssignedExperiment : AssignExp(this.groupID);
     }
 
 
     getCopy(){
-        let copy = new subject();
+        let copy = new subject(this.groupID, this.assignedExperiment);
         copy.gender = this.gender;
         copy.age = this.age;
         copy.computerUse = this.computerUse;
         copy.wpm = this.wpm;
         copy.phaseData = this.phaseData;
-        copy.groupID = this.groupID;
-        copy.assignedExperiment = this.assignedExperiment;
-        
+
         return copy;
     }
 
