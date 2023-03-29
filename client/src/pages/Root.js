@@ -14,11 +14,23 @@ export default function Root(props) {
         console.log("getExperimentCount from root component mount")
     }, [])
 
+    const debugGuard = ()=>{
+        if(props.context.debug){
+            return(
+                <div>
+                    <p>Number of experiments already performed:</p>
+                    <p>{count ? count : "Hmmm... Maybe you're not connected to the server..."}</p>
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
+
   return (
     <div className="content">
         <h1>Experiment Portal Home</h1>
-        <p>Number of experiments already performed:</p>
-        <p>{count ? count : "Hmmm... Maybe you're not connected to the server..."}</p>
+        {debugGuard()}
     </div>
   );
 }

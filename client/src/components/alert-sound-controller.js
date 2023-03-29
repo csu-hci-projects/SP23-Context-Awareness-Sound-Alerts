@@ -36,12 +36,12 @@ export default function AlertSoundController(props){
             console.log("Triggering alert sound!")
             // Latin Squares specified alert sound order
             const soundToPlay = props.alertOrder[nextAlert]
+            setNextAlert(nextAlert + 1);
             setCurrentSound(new Audio("http://localhost:22222/"
                 + alertConfig.sounds[soundToPlay].file));
             currentSound.volume = alertConfig.sounds[soundToPlay].volume;
-            currentSound.play();
 
-            setNextAlert(nextAlert + 1);
+            currentSound.play();
         }
     }, 100)
 
@@ -61,11 +61,21 @@ export default function AlertSoundController(props){
 
     }
 
-    return(
-        <div>
-            <h3>Alerts should play at:</h3>
-            <p>Elapsed: {elapsed.getMinutes()}:{elapsed.getSeconds()}</p>
-            {showAlertTimes()}
-        </div>
-    )
+    const debugGuard = ()=>{
+        if(props.context.debug){
+            return(
+                <div className={"debug-alert-sound"}>
+                    <h3>Alerts should play at:</h3>
+                    <p>Elapsed: {elapsed.getMinutes()}:{elapsed.getSeconds()}</p>
+                    <p>Alert Order: {JSON.stringify(props.alertOrder)}</p>
+                    <p>Next Alert: {nextAlert}</p>
+                    {showAlertTimes()}
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
+
+    return(debugGuard())
 }

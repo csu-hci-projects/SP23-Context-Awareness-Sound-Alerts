@@ -24,8 +24,7 @@ export default function BackgroundSound(props){
 
     return(
         <div>
-            <p>Sound</p>
-            <Button onClick={handleClick}>Play / Pause</Button>
+            {props.context.debug ? <Button onClick={handleClick}>Play / Pause</Button> : null}
         </div>
     )
 }

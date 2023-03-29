@@ -64,7 +64,7 @@ export default function ExperimentController(props){
 
     return (
         <div className={"content"}>
-            <p>Current Phase: {currentPhase + 1}</p>
+            {props.context.debug ? <p>Current Phase: {currentPhase + 1}</p> : null}
             {isItBreakTime()}
         </div>
     );
