@@ -3,7 +3,8 @@ import {useState} from "react";
 
 export default function AlertSoundController(props){
 
-    const [controllerStart, setControllerStart] = useState(new Date())
+    const [controllerStart, setControllerStart] = useState(new Date());
+    
     const getRandomAlertTimes = ()=>{
         const result = [undefined, undefined, undefined]
         const currentTime = new Date().getTime();
@@ -26,7 +27,6 @@ export default function AlertSoundController(props){
     const [alertTimes, setAlertTimes] = useState(getRandomAlertTimes());
     const [currentSound, setCurrentSound] = useState(undefined);
     const [elapsed, setElapsed] = useState(new Date())
-    const [played, setPlayed] = useState([false, false, false])
 
     setTimeout(()=>{
         const currentTime_ms = new Date();
