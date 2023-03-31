@@ -4,7 +4,7 @@ import {useState} from "react";
 export default function AlertSoundController(props){
 
     const [controllerStart, setControllerStart] = useState(new Date());
-    
+
     const getRandomAlertTimes = ()=>{
         const result = [undefined, undefined, undefined]
         const currentTime = new Date().getTime();
@@ -35,8 +35,7 @@ export default function AlertSoundController(props){
         if (alertTimes && currentTime_ms.getTime() >= alertTimes[nextAlert]){
             // Latin Squares specified alert sound order
             const soundToPlay = props.alertOrder[nextAlert];
-            setCurrentSound(new Audio("http://localhost:22222/"
-                + alertConfig.sounds[soundToPlay].file));
+            setCurrentSound(alertConfig.sounds[soundToPlay].file);
 
             currentSound.addEventListener("loadeddata", ()=>{
                 console.log("Triggering alert sound! " + alertConfig.sounds[soundToPlay].file);
