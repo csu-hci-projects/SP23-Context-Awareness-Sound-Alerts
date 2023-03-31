@@ -60,8 +60,9 @@ export default function ExperimentController(props){
         } else {
             return <Experiment
                 context={props.context}
-                config={expConfig.order[currentPhase]}
-                alertOrder={expConfig.order[currentPhase].notificationSoundOrder}
+                config={props.context.experimentState.assignedExperiment.order[currentPhase]}
+                // config={expConfig.order[currentPhase]}
+                alertOrder={props.context.experimentState.assignedExperiment.order[currentPhase].notificationSoundOrder}
                 nextPhase={nextPhase}
                 currentPhase={currentPhase}/>
         }

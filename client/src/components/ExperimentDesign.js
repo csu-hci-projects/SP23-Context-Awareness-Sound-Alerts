@@ -1,23 +1,23 @@
 // An individual experiment
 const exp0 = {
-    environment: "Right By Da Beach BBooooIIIIII",
-    backgroundSound: "beach.flac",
+    environment: "Beach",
+    backgroundSound: "beach-6min-48k24b.flac",
     notificationSoundOrder: [0, 1, 2],
-    backgroundImage: "margahrita.jpeg",
-    typingText: "The quick brown fox likes margahritas."
+    backgroundImage: "margarita.jpeg",
+    typingText: "The quick brown fox likes margaritas."
 }
 
 const exp1 = {
-    environment: "Expensive bar where airplanes park.",
-    backgroundSound: "airport.flac",
+    environment: "Airport",
+    backgroundSound: "airport-ambience-mexico-5min48k24b.flac",
     notificationSoundOrder: [1, 2, 0],
     backgroundImage: "bloody-mary.jpeg",
     typingText: "The quick brown fox likes bloody mary's."
 }
 
 const exp2 = {
-    environment: "City (bar)",
-    backgroundSound: "city.flac",
+    environment: "City",
+    backgroundSound: "city-crosswalk-5min48k24b.flac",
     notificationSoundOrder: [2, 0, 1],
     backgroundImage: "martini.jpeg",
     typingText: "The quick brown fox is now trashed."
