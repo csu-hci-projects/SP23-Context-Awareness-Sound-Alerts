@@ -23,13 +23,13 @@ export default function Experiment(props) {
 
     return(
         <div className={"phase"}>
-            {props.context.debug ? <h3>The current environment:{props.config.environment}</h3> : null}
+            {props.context.debug ? <p className={"debug-alert-sound"}>The current environment: {props.config.environment}</p> : null}
             <BackgroundSound url={props.config.backgroundSound} context={props.context}/>
             <h1>Words Per Minute Test</h1>
             <Button className={"action-button"} onClick={handleActionClick}>Click Here When You Hear An Alert</Button>
             <WPMtest context={props.context} text={props.config.typingText} phaseData={phaseData}/>
             <AlertSoundController context={props.context} alertOrder={props.alertOrder} currentPhase={props.currentPhase}/>
-            <Button className={"navButton"} onClick={props.nextPhase}>Manual Phase Advance</Button>
+            {props.context.debug ? <Button className={"navButton"} onClick={props.nextPhase}>Manual Phase Advance</Button> : null}
         </div>
     )
 }

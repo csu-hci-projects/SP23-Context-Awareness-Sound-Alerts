@@ -22,7 +22,7 @@ export default function BackgroundSound(props){
     // Kill the background sound when the component unmounts
     useEffect(()=>{
         audio.play();
-        
+
         return ()=>{
             audio.pause();
         }
