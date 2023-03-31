@@ -1,13 +1,13 @@
 const alertSound1 = {
-    file: "one.wav",
+    file: "Funk.wav",
     volume: 1
 }
 const alertSound2 = {
-    file: "two.wav",
+    file: "Glass.wav",
     volume: 1
 }
 const alertSound3 = {
-    file: "three.wav",
+    file: "Ping.wav",
     volume: 1
 }
 
