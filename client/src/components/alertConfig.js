@@ -1,15 +1,15 @@
 const URL_PREFIX = "http://localhost:22222/"
 
 const alertSound1 = {
-    file: new Audio(URL_PREFIX + "one.wav"),
+    file: "one.wav",
     volume: 1
 }
 const alertSound2 = {
-    file: new Audio(URL_PREFIX + "two.wav"),
+    file: "two.wav",
     volume: 1
 }
 const alertSound3 = {
-    file: new Audio(URL_PREFIX + "three.wav"),
+    file: "three.wav",
     volume: 1
 }
 

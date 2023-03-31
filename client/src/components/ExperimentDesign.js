@@ -23,8 +23,8 @@ const exp2 = {
     typingText: "The quick brown fox is now trashed."
 }
 
-// All experiements will get packaged in an array
-// Along with which sequencial number of the experiment this is
+// All experiments will get packaged in an array
+// Along with which sequential number of the experiment this is
 export const experimentConfigA = {
     expID: 0,
     order: [exp0, exp1, exp2]

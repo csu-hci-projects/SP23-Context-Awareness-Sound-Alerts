@@ -1,5 +1,5 @@
 import {alertConfig} from "./alertConfig";
-import {useState} from "react";
+import {useRef, useState} from "react";
 
 export default function AlertSoundController(props){
 
@@ -23,10 +23,15 @@ export default function AlertSoundController(props){
         return result;
     }
 
+
     const [nextAlert, setNextAlert] = useState(0);
-    const [alertTimes, setAlertTimes] = useState(getRandomAlertTimes());
-    const [currentSound, setCurrentSound] = useState(undefined);
-    const [elapsed, setElapsed] = useState(new Date())
+    const [alertTimes] = useState(getRandomAlertTimes());
+    const [elapsed, setElapsed] = useState(new Date());
+    const URL_PREFIX = "http://localhost:22222/";
+    const alert1 = useRef(new Audio(URL_PREFIX + alertConfig.sounds[0].file));
+    const alert2 = useRef(new Audio(URL_PREFIX + alertConfig.sounds[1].file));
+    const alert3 = useRef(new Audio(URL_PREFIX + alertConfig.sounds[2].file));
+    const alerts = [alert1.current, alert2.current, alert3.current];
 
     setTimeout(()=>{
         const currentTime_ms = new Date();
@@ -34,17 +39,15 @@ export default function AlertSoundController(props){
 
         if (alertTimes && currentTime_ms.getTime() >= alertTimes[nextAlert]){
             // Latin Squares specified alert sound order
-            const soundToPlay = props.alertOrder[nextAlert];
-            setCurrentSound(alertConfig.sounds[soundToPlay].file);
-
-            currentSound.addEventListener("loadeddata", ()=>{
-                console.log("Triggering alert sound! " + alertConfig.sounds[soundToPlay].file);
-                currentSound.play();
-                setNextAlert(nextAlert + 1);
-                // TODO: log alert play time in data
-            })
-
-
+            const indexOfSoundToPlay = props.alertOrder[nextAlert];
+            setNextAlert(nextAlert + 1);
+            alerts[indexOfSoundToPlay].play()
+                .then(()=>{
+                    console.log("Triggered alert sound! " + alertConfig.sounds[indexOfSoundToPlay].file);
+                    // Log alert time
+                    props.context.experimentState.phaseData[props.currentPhase].alertTimes[props.alertOrder[nextAlert-1]]
+                        = new Date().getTime();
+                })
         }
     }, 100)
 

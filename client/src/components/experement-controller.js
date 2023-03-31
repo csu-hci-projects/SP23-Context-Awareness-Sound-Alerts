@@ -58,7 +58,12 @@ export default function ExperimentController(props){
         if(breakTime){
             return <BreakTimer setBreakTime={setBreakTime}/>
         } else {
-            return <Experiment context={props.context} config={expConfig.order[currentPhase]} alertOrder={expConfig.order[currentPhase].notificationSoundOrder} nextPhase={nextPhase} currentPhase={currentPhase}/>
+            return <Experiment
+                context={props.context}
+                config={expConfig.order[currentPhase]}
+                alertOrder={expConfig.order[currentPhase].notificationSoundOrder}
+                nextPhase={nextPhase}
+                currentPhase={currentPhase}/>
         }
     }
 

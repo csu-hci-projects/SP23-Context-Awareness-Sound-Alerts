@@ -38,7 +38,9 @@ app.post('/addData', (request, response)=>{
 })
 
 // Makes everything in the media folder available over http
-app.use(express.static('media'));
+app.use(express.static('media'), (request)=>{
+    console.log("Requested Media: " + JSON.stringify(request.body) + "\n");
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
