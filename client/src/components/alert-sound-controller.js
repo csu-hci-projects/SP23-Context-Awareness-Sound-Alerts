@@ -1,5 +1,5 @@
 import {alertConfig} from "./alertConfig";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 export default function AlertSoundController(props){
 
@@ -33,6 +33,15 @@ export default function AlertSoundController(props){
     const alert3 = useRef(new Audio(URL_PREFIX + alertConfig.sounds[2].file));
     const alerts = [alert1.current, alert2.current, alert3.current];
 
+    // Make sure all alert sounds have stopped when component unmounts
+    useEffect(()=>{
+        return ()=>{
+            alert1.current.pause();
+            alert2.current.pause();
+            alert3.current.pause();
+        }
+    }, [])
+
     setTimeout(()=>{
         const currentTime_ms = new Date();
         setElapsed(new Date(currentTime_ms - controllerStart));
@@ -40,13 +49,16 @@ export default function AlertSoundController(props){
         if (alertTimes && currentTime_ms.getTime() >= alertTimes[nextAlert]){
             // Latin Squares specified alert sound order
             const indexOfSoundToPlay = props.alertOrder[nextAlert];
-            setNextAlert(nextAlert + 1);
+
             alerts[indexOfSoundToPlay].play()
                 .then(()=>{
                     console.log("Triggered alert sound! " + alertConfig.sounds[indexOfSoundToPlay].file);
                     // Log alert time
-                    props.context.experimentState.phaseData[props.currentPhase].alertTimes[props.alertOrder[nextAlert-1]]
+                    props.context.experimentState.phaseData[props.currentPhase]
+                        .alertTimes[props.alertOrder[nextAlert]]
                         = new Date().getTime();
+                    console.log("Logged Sound Alert: Phase " + props.currentPhase + "Alert " + props.alertOrder[nextAlert] );
+                    setNextAlert(nextAlert + 1);
                 })
         }
     }, 100)

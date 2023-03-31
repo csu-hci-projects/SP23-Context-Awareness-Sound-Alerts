@@ -18,6 +18,14 @@ export default function BackgroundSound(props){
             console.log("Audio Paused");
         }
     },[play])
+
+    // Kill the background sound when the component unmounts
+    useEffect(()=>{
+        return ()=>{
+            audio.pause();
+        }
+    })
+
     const handleClick = ()=>{
         setPlay(play ? false : true );
     }

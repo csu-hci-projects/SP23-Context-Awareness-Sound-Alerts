@@ -7,7 +7,7 @@ import AlertSoundController from "../components/alert-sound-controller";
 export default function Experiment(props) {
     const phaseData = props.context.experimentState.phaseData[props.currentPhase]
 
-    // Set the experiment start time in the data once the experiment starts
+    // Log the experiment start time in the data once the experiment starts
     useEffect(()=>{
         phaseData.experimentStartTime = new Date().getTime();
         console.log("Experiment phase " + props.currentPhase + " started at " +

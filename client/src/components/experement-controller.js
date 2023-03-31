@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import Experiment from "../pages/experiment";
 import BreakTimer from "./break-timer";
 
@@ -37,8 +37,8 @@ export default function ExperimentController(props){
 // ****************************************************************
 
     const NUM_PHASES = 3;
-    const [currentPhase, setCurrentPhase] = useState(0)
-    const [breakTime, setBreakTime] = useState(false)
+    const [currentPhase, setCurrentPhase] = useState(0);
+    const [breakTime, setBreakTime] = useState(false);
 
     const nextPhase = ()=> {
        if(currentPhase >= NUM_PHASES - 1){
