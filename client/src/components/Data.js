@@ -1,10 +1,10 @@
 
 export default function Data(props){
 
-    const subjectGuard = ()=>{
-        if (props.subject){
+    const debugGuard = ()=>{
+        if(props.context.debug){
             return(
-                <div className={"data"}>
+                <div className={"data debug-alert-sound"}>
                     <u>experiment data:</u>
                     <p>Gender: {props.subject.gender ? props.subject.gender : null}</p>
                     <p>Age: {props.subject.age ? props.subject.age : null}</p>
@@ -15,6 +15,13 @@ export default function Data(props){
                     <p>PhaseData: {JSON.stringify(props.subject.actions)}</p>
                 </div>
             )
+        } else {
+            return null
+        }
+    }
+    const subjectGuard = ()=>{
+        if (props.subject){
+            return(debugGuard())
         } else {
             return null
         }

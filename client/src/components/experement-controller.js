@@ -1,44 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Experiment from "../pages/experiment";
 import BreakTimer from "./break-timer";
+import {alertConfig} from "./alertConfig";
 
 export default function ExperimentController(props){
 
-    // ****************************************************************
-    // A bunch of temp stuff until this gets generated programmatically
-    const exp0 = {
-        environment: "Right By Da Beach BBooooIIIIII",
-        backgroundSound: "beach-6min-48k24b.flac",
-        notificationSoundOrder: [0, 1, 2],
-        backgroundImage: "margahrita.jpeg",
-        typingText: "The quick brown fox likes margaritas."
-    }
-    const exp1 = {
-        environment: "Expensive bar where airplanes park.",
-        backgroundSound: "airport-ambience-mexico-5min48k24b.flac",
-        notificationSoundOrder: [1, 2, 0],
-        backgroundImage: "bloody-mary.jpeg",
-        typingText: "The quick brown fox likes bloody mary's."
-    }
-    const exp2 = {
-        environment: "City (bar)",
-        backgroundSound: "city-crosswalk-5min48k24b.flac",
-        notificationSoundOrder: [2, 0, 1],
-        backgroundImage: "martini.jpeg",
-        typingText: "The quick brown fox is now trashed."
-    }
-
-    const experimentConfig = {
-        expID: 0,
-        order: [exp0, exp1, exp2]
-    }
-
-    const [expConfig, setExpConfig] = useState(experimentConfig)
-// ****************************************************************
-
     const NUM_PHASES = 3;
-    const [currentPhase, setCurrentPhase] = useState(0)
-    const [breakTime, setBreakTime] = useState(false)
+    const [currentPhase, setCurrentPhase] = useState(0);
+    const [breakTime, setBreakTime] = useState(false);
 
     const nextPhase = ()=> {
        if(currentPhase >= NUM_PHASES - 1){
@@ -54,17 +23,58 @@ export default function ExperimentController(props){
        }
     }
 
+    // Auto Advance Mechanism
+    const [expStart_ms, setExpStartTime] = useState(new Date().getTime())
+    const [expElapsed, setExpElapsed] = useState(new Date(0));
+    const ADDITIONAL_EXPERIMENT_TAIL_PADDING_ms = (10 * 1000); // 10secs
+    const maxPhaseTime_ms = // The length of the experiment before break time auto advance
+        alertConfig.frontPadding_ms +
+        (NUM_PHASES * alertConfig.padding_ms) +
+        (NUM_PHASES * alertConfig.potentialLength_ms) +
+        ADDITIONAL_EXPERIMENT_TAIL_PADDING_ms;
+    // const maxPhaseTime_ms = (20*1000);
+    setTimeout(()=>{
+        const curTime_ms = new Date().getTime();
+        const elapsed = new Date(curTime_ms - expStart_ms);
+        setExpElapsed(elapsed);
+        if (elapsed >= maxPhaseTime_ms && breakTime === false){
+            nextPhase();
+        }
+    }, 1000)
+    useEffect(()=>{
+        setExpStartTime(new Date().getTime());
+    }, [breakTime])
+
     const isItBreakTime = ()=> {
         if(breakTime){
-            return <BreakTimer setBreakTime={setBreakTime}/>
+            return <BreakTimer context={props.context} setBreakTime={setBreakTime}/>
         } else {
-            return <Experiment context={props.context} config={expConfig.order[currentPhase]} alertOrder={expConfig.order[currentPhase].notificationSoundOrder} nextPhase={nextPhase} currentPhase={currentPhase}/>
+            return <Experiment
+                context={props.context}
+                config={props.context.experimentState.assignedExperiment.order[currentPhase]}
+                // config={expConfig.order[currentPhase]}
+                alertOrder={props.context.experimentState.assignedExperiment.order[currentPhase].notificationSoundOrder}
+                nextPhase={nextPhase}
+                currentPhase={currentPhase}/>
         }
+    }
+
+    const getAutoAdvanceFormatting = ()=>{
+        const willAdvanceDate = new Date(maxPhaseTime_ms);
+
+        return(
+            <p>Auto Advance At: {willAdvanceDate.getMinutes()}:{willAdvanceDate.getSeconds()}</p>
+        )
     }
 
     return (
         <div className={"content"}>
-            <p>Current Phase: {currentPhase + 1}</p>
+            <div className={"debug-alert-sound"}>
+                {props.context.debug ? <p>Current Phase: {currentPhase + 1}</p> : null}
+                {props.context.debug ? <p>Elapsed: {expElapsed.getMinutes()}:{expElapsed.getSeconds().toPrecision(2)}</p> : null}
+                {props.context.debug ? getAutoAdvanceFormatting() : null}
+            </div>
+
             {isItBreakTime()}
         </div>
     );

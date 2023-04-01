@@ -13,7 +13,8 @@ const alertSound3 = {
 
 export const alertConfig = {
     sounds: [alertSound1, alertSound2, alertSound3],
-    padding_ms: 20 * 1000, // Minimum space between alerts
-    potentialLength_ms: 60 * 1000, // The amount of time an alert could possibly be played after padding
-    frontPadding_ms: 20 * 1000, // Minimum space before first alert
+    // THESE ARE ALL SHORT TIMES NOW FOR EASY TESTING
+    padding_ms: 5 * 1000, // Minimum space between alerts
+    potentialLength_ms: 15 * 1000, // The amount of time an alert could possibly be played after padding
+    frontPadding_ms: 0 * 1000, // Minimum space before first alert
 }

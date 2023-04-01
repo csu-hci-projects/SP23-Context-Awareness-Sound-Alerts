@@ -117,3 +117,15 @@
 .timer {
   width: 100%;
 }
+
+.debug {
+  width: 100%;
+  justify-content: left;
+  text-align: left;
+  color: deeppink;
+}
+
+.debug-alert-sound p{
+  margin: 1px;
+  font-family: monospace;
+}
