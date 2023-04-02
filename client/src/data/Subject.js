@@ -11,7 +11,6 @@ export default class subject {
     brand = undefined;
     silent = undefined;
     defaultNotification = undefined;
-    wpm = [];
     phaseData = [];
 
     #NUMBER_OF_PHASES = 3;
@@ -33,7 +32,6 @@ export default class subject {
         copy.gender = this.gender;
         copy.age = this.age;
         copy.computerUse = this.computerUse;
-        copy.wpm = this.wpm;
         copy.phaseData = this.phaseData;
         copy.brand = this.brand;
         copy.silent = this.silent;
@@ -63,9 +61,6 @@ export default class subject {
         this.groupID = groupIDInput;
     }
 
-    set wpm(wpmInput){
-        this.wpm.push(wpmInput);
-    }
 
     set actions(actionsInput){
         this.phaseData.push(actionsInput);
@@ -85,10 +80,6 @@ export default class subject {
 
     get gender() {
         return this.gender;
-    }
-
-    get wpm(){
-        return this.wpm;
     }
 
     get actions(){

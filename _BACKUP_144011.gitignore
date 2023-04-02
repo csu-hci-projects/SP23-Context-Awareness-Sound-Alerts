@@ -1,10 +1,10 @@
 # Repo root .gitignore
 runlog.log
 .idea/
+<<<<<<< HEAD
 
 # python virtual environment
 .python-version
-
-# Temp directory
+=======
 /tmp
-
+>>>>>>> main
