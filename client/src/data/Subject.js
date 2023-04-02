@@ -8,6 +8,9 @@ export default class subject {
     computerUse = undefined;
     groupID = undefined;
     assignedExperiment = undefined;
+    brand = undefined;
+    silent = undefined;
+    defaultNotification = undefined;
     phaseData = [];
 
     #NUMBER_OF_PHASES = 3;
@@ -30,6 +33,10 @@ export default class subject {
         copy.age = this.age;
         copy.computerUse = this.computerUse;
         copy.phaseData = this.phaseData;
+        copy.brand = this.brand;
+        copy.silent = this.silent;
+        copy.defaultNotification = this.defaultNotification;
+
 
         return copy;
     }

@@ -2,9 +2,7 @@ export class UserActionData{
     backgroundSound;
     experimentStartTime;
     experimentEndTime;
-    alert1Time = 0;
-    alert2Time = 0;
-    alert3Time = 0;
+    alertTimes = [undefined, undefined, undefined];
     userClick = [];
     // TODO: data doesn't make it here yet
     wpm;

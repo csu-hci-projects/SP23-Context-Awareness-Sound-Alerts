@@ -7,6 +7,8 @@ import subject from "../data/Subject";
 import Export from "../pages/export";
 import NavBar from "./NavBar";
 import ExperimentController from "./experement-controller";
+import DebugButtons from "./DebugButton";
+import DebugButton from "./DebugButton";
 
 
 export default function App(){
@@ -15,13 +17,16 @@ export default function App(){
     // and don't want to have to click through every time it reloads.
     const [pageIndex, setPageIndex] = useState(0);
     const [experimentState, setExperimentState] = useState(new subject(undefined, undefined));
+    const [debug, setDebug] = useState(true);
 
     const context = {
         pageIndex: pageIndex,
         setPageIndex: (x) => setPageIndex(x),
         experimentState: experimentState,
         setExperimentState: (x) => setExperimentState(x),
-        numPages: 5
+        numPages: 5,
+        debug,
+        setDebug
     }
 
     const root = {
@@ -52,9 +57,7 @@ export default function App(){
     // We don't want to show the nav bar during the experiment
     const showNavBar = ()=> {
         if(pageIndex == 3){
-            // Temporary so we can watch data update live
-            // return null
-            return <NavBar context={context}/>
+            return debug ? <NavBar context={context}/> : null
         } else {
             return <NavBar context={context}/>
         }
@@ -69,6 +72,7 @@ export default function App(){
                 {pageOrder[pageIndex].element}
             </div>
             {showNavBar()}
+            <DebugButton context={context}/>
         </div>
 
     )

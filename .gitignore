@@ -4,3 +4,7 @@ runlog.log
 
 # python virtual environment
 .python-version
+
+# Temp directory
+/tmp
+

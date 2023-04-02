@@ -9,7 +9,7 @@ export default function NavBar(props){
         <div className={"navBar"}>
             <PreviousPageButton context={props.context}/>
             <NextPageButton context={props.context}/><br/>
-            <Data subject={props.context.experimentState}/>
+            <Data subject={props.context.experimentState} context={props.context}/>
         </div>
     )
 }
