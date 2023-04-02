@@ -24,6 +24,24 @@ export default function DemographicForm(props){
         props.context.setExperimentState(updateObject);
     }
 
+    const handleBrand = (e) =>{
+        let updateObject = props.context.experimentState.getCopy();
+        updateObject.brand = e.target.attributes.id.nodeValue;
+        props.context.setExperimentState(updateObject);
+    }
+
+    const handleSilent = (e) =>{
+        let updateObject = props.context.experimentState.getCopy();
+        updateObject.silent = e.target.attributes.id.nodeValue;
+        props.context.setExperimentState(updateObject);
+    }
+
+    const handleDefaultNotification = (e) =>{
+        let updateObject = props.context.experimentState.getCopy();
+        updateObject.defaultNotification = e.target.attributes.id.nodeValue;
+        props.context.setExperimentState(updateObject);
+    }
+
     return(
         <div className={"content"}>
             <div className={"form-container"}>
@@ -38,23 +56,24 @@ export default function DemographicForm(props){
                         <tr>
                             <td><Label for="gender" sm={2}>Gender</Label></td>
                             <td>
-                                <FormGroup className={"formGroup"} row
+                                <FormGroup className={"formGroup"}
                                            onChange={handleGender}>
                                     <Label check>
-                                        <Input type="radio" name="radio1" id="female" />{' '}
+                                        <Input type="radio" name="radio-gender" id="female" />{' '}
                                         female
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio1" id="male" />{' '}
+                                        <Input type="radio" name="radio-gender" id="male" />{' '}
                                         male
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio1" id="other"/>{' '}
+                                        <Input type="radio" name="radio-gender" id="other"/>{' '}
                                         prefer not to say
                                     </Label>
                                 </FormGroup>
                             </td>
                         </tr>
+
                         <tr>
                             <td><Label for="age">Age</Label></td>
                             <td>
@@ -64,6 +83,7 @@ export default function DemographicForm(props){
                                 </FormGroup>
                             </td>
                         </tr>
+
                         <tr>
                             <td>
                                 <Label for="Hours"  sm={3}>Hours of computer use per day</Label>
@@ -71,27 +91,108 @@ export default function DemographicForm(props){
                             <td>
                                 <FormGroup className={"formGroup"} onChange={handleCompUse} row>
                                     <Label check>
-                                        <Input type="radio" name="radio1" id="1-3"/>{' '}
+                                        <Input type="radio" name="radio-compuse" id="1-3"/>{' '}
                                         1-3
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio1" id="4-7"/>{' '}
+                                        <Input type="radio" name="radio-compuse" id="4-7"/>{' '}
                                         4-7
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio1" id="8-10"/>{' '}
+                                        <Input type="radio" name="radio-compuse" id="8-10"/>{' '}
                                         8-10
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio1" id="10+"/>{' '}
+                                        <Input type="radio" name="radio-compuse" id="10+"/>{' '}
                                         10+
                                     </Label>
                                 </FormGroup>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+                                <Label for="Brand"  sm={3}>Phone Brand</Label>
+                            </td>
+                            <td>
+                                <FormGroup className={"formGroup"} onChange={handleBrand} row>
+                                    <Label check>
+                                        <Input type="radio" name="radio-device" id="Apple"/>{' '}
+                                        Apple
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-device" id="Samsung"/>{' '}
+                                        Samsung
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-device" id="Pixel"/>{' '}
+                                        Pixel
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-device" id="LG"/>{' '}
+                                        LG
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-device" id="Nokia"/>{' '}
+                                        Nokia
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-device" id="Other"/>{' '}
+                                        Other
+                                    </Label><br/>
+                                </FormGroup>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><Label for="silent" sm={2}>Percent of time phone is on silent during the day</Label></td>
+                            <td>
+                                <FormGroup className={"formGroup"} row
+                                           onChange={handleSilent}>
+                                    <Label check>
+                                        <Input type="radio" name="radio-silent" id="0" />{' '}
+                                        0% - My phone is never on silent
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-silent" id="25" />{' '}
+                                        25% - My phone is on silent a small part of the day
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-silent" id="50"/>{' '}
+                                        50% - My phone is on silent half of the day
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-silent" id="75"/>{' '}
+                                        75% - My phone is on silent most of the day
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-silent" id="100"/>{' '}
+                                        100% - My phone is on silent always
+                                    </Label>
+                                </FormGroup>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><Label for="defaultNotification" sm={2}>Do you use the default notification sound on your phone?</Label></td>
+                            <td>
+                                <FormGroup className={"formGroup"} row
+                                           onChange={handleDefaultNotification}>
+                                    <Label check>
+                                        <Input type="radio" name="radio-default-notification" id="True" />{' '}
+                                        Yes
+                                    </Label><br/>
+                                    <Label check>
+                                        <Input type="radio" name="radio-default-notification" id="False" />{' '}
+                                        No
+                                    </Label>
+                                </FormGroup>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </Table>
-
+                
             </div>
         </div>
     )

@@ -8,6 +8,9 @@ export default class subject {
     computerUse = undefined;
     groupID = undefined;
     assignedExperiment = undefined;
+    brand = undefined;
+    silent = undefined;
+    defaultNotification = undefined;
     wpm = [];
     phaseData = [];
 
@@ -32,6 +35,10 @@ export default class subject {
         copy.computerUse = this.computerUse;
         copy.wpm = this.wpm;
         copy.phaseData = this.phaseData;
+        copy.brand = this.brand;
+        copy.silent = this.silent;
+        copy.defaultNotification = this.defaultNotification;
+
 
         return copy;
     }
