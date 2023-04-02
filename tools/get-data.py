@@ -79,7 +79,7 @@ def get_data(item, phases):
     return result
 
 
-columns = data_source.keys()
+columns = list(data_source.keys())
 data = pd.DataFrame(columns=columns)
 
 for item in collection.find():
