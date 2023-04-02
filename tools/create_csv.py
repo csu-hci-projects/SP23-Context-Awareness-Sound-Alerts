@@ -3,6 +3,7 @@ import pandas as pd
 
 DATABASE = "test"
 COLLECTION = "test-collection"
+CSV_FILE_NAME = "test.csv"
 
 # Master linking of data to source
 data_source = {
@@ -35,56 +36,68 @@ data_source = {
 }
 
 
+# Create a mapping from the phase to the correct named data
 def find_order(assignedExp, phaseData):
     result = dict()
-    for i in range(len(assignedExp['order']) - 1):
+    for i in range(len(assignedExp['order'])):
         if "City" in assignedExp['order'][i]['environment']:
             result['city'] = phaseData[i]
         elif "Beach" in assignedExp['order'][i]['environment']:
             result['beach'] = phaseData[i]
-        elif "airplane" in assignedExp['order'][i]['environment']:
+        elif "Airport" in assignedExp['order'][i]['environment']:
             result['airport'] = phaseData[i]
 
     return result
 
 
-# Parse the key out of the JS file
-f = open("../server/creds/mongoKey.js")
-js_file = f.read()
-js_file = js_file.split(" ")
-key = js_file[4]
-key = key.strip("\"\n")
-
-client = MongoClient(key)
-db = client[DATABASE]
-collection = db[COLLECTION]
-
-
+# Pull the data apart from the object returned from the database and return as a list
 def get_data(item, phases):
     result = []
     data_types = data_source.keys()
     for d in data_types:
         try:
-            if d in ['database-id', 'groupID', 'gender', 'age', 'computerUse', 'brand', 'silent', 'defaultNotification']:
+            if d in ['database-id', 'groupID', 'gender', 'age', 'computerUse', 'brand', 'silent',
+                     'defaultNotification']:
                 result.append(data_source[d](item))
             else:
                 result.append(data_source[d](phases))
         except KeyError:
             result.append("NA")
-            print(f"Error retrieving {d} from {str(item['_id'])}, data not found in entry.\n")
+            print(f"Error retrieving {d} from: \nObject:{str(item['_id'])} GroupID:{item['groupID']}")
         except:
             print("Unknown Error getting data")
+
     return result
 
 
-columns = list(data_source.keys())
+def create_pandas():
+    # Parse the key out of the JS file
+    f = open("../server/creds/mongoKey.js")
+    js_file = f.read()
+    js_file = js_file.split(" ")
+    key = js_file[4]
+    key = key.strip("\"\n")
 
-data = list()
-for item in collection.find():
-    phases = find_order(item['assignedExperiment'], item['phaseData'])
-    row_data = get_data(item, phases)
-    data.append(row_data)
+    # Connect to the database
+    client = MongoClient(key)
+    db = client[DATABASE]
+    collection = db[COLLECTION]
 
-final_data = pd.DataFrame(data, columns=columns)
+    columns = list(data_source.keys())
 
-final_data.to_csv("test_csv.csv")
+    # Iterate through each item in the database
+    data = list()
+    for item in collection.find():
+        phases = find_order(item['assignedExperiment'], item['phaseData'])
+        row_data = get_data(item, phases)
+        data.append(row_data)
+
+    final_data = pd.DataFrame(data, columns=columns)
+    return final_data
+
+
+if __name__ == "__main__":
+    # Create a pandas DataFrame
+    frame = create_pandas()
+    # Save to csv
+    frame.to_csv(CSV_FILE_NAME)
