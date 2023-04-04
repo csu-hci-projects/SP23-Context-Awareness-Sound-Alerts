@@ -2,15 +2,12 @@ import React, {useEffect, useState} from "react";
 import Root from "../pages/Root";
 import TaskDescription from "../pages/taskDescription";
 import DemographicForm from "../pages/demographicForm";
-import Experiment from "../pages/experiment";
 import subject from "../data/Subject";
 import Export from "../pages/export";
 import NavBar from "./NavBar";
 import ExperimentController from "./experement-controller";
-import DebugButtons from "./DebugButton";
 import DebugButton from "./DebugButton";
 import SampleTask from "../pages/SampleTask";
-import PrepExpStart from "../pages/PrepExpStart";
 
 
 export default function App(){
@@ -48,11 +45,6 @@ export default function App(){
     const sampleTask = {
         name: "sampleTask",
         element: <SampleTask context={context}/>
-    }
-
-    const prepExpStart = {
-        name: "Prepare for Experiment Start",
-        element: <PrepExpStart context={context}/>
     }
 
     const experiment = {
