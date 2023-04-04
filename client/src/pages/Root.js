@@ -29,7 +29,7 @@ export default function Root(props) {
 
   return (
     <div className="content">
-        <h1>Experiment Portal Home</h1>
+        <h1>Welcome!</h1>
         {debugGuard()}
     </div>
   );

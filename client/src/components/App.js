@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Root from "../pages/Root";
-import HearingTest from "../pages/hearingTest";
+import TaskDescription from "../pages/taskDescription";
 import DemographicForm from "../pages/demographicForm";
 import Experiment from "../pages/experiment";
 import subject from "../data/Subject";
@@ -9,6 +9,8 @@ import NavBar from "./NavBar";
 import ExperimentController from "./experement-controller";
 import DebugButtons from "./DebugButton";
 import DebugButton from "./DebugButton";
+import SampleTask from "../pages/SampleTask";
+import PrepExpStart from "../pages/PrepExpStart";
 
 
 export default function App(){
@@ -24,7 +26,6 @@ export default function App(){
         setPageIndex: (x) => setPageIndex(x),
         experimentState: experimentState,
         setExperimentState: (x) => setExperimentState(x),
-        numPages: 5,
         debug,
         setDebug
     }
@@ -34,14 +35,24 @@ export default function App(){
         element: <Root context={context}/>
     }
 
-    const hearingTest = {
+    const taskDescription = {
         name: "hearingTest",
-        element: <HearingTest context={context}/>
+        element: <TaskDescription context={context}/>
     }
 
     const demographicsForm = {
         name: "demographicsForm",
         element: <DemographicForm context={context}/>
+    }
+
+    const sampleTask = {
+        name: "sampleTask",
+        element: <SampleTask context={context}/>
+    }
+
+    const prepExpStart = {
+        name: "Prepare for Experiment Start",
+        element: <PrepExpStart context={context}/>
     }
 
     const experiment = {
@@ -56,7 +67,7 @@ export default function App(){
 
     // We don't want to show the nav bar during the experiment
     const showNavBar = ()=> {
-        if(pageIndex == 3){
+        if(pageIndex == 5){
             return debug ? <NavBar context={context}/> : null
         } else {
             return <NavBar context={context}/>
@@ -64,7 +75,11 @@ export default function App(){
     }
 
     // Order that the pages will appear
-    const pageOrder = [root, hearingTest, demographicsForm, experiment, exportData]
+    const pageOrder = [
+        root, demographicsForm, taskDescription, sampleTask, prepExpStart,
+        experiment, exportData];
+
+    context.numPages = pageOrder.length;
 
     return(
         <div className={"App"}>
