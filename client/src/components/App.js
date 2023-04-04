@@ -68,7 +68,7 @@ export default function App(){
 
     // Order that the pages will appear
     const pageOrder = [
-        root, demographicsForm, taskDescription, sampleTask, prepExpStart,
+        root, demographicsForm, taskDescription, sampleTask,
         experiment, exportData];
 
     context.numPages = pageOrder.length;
