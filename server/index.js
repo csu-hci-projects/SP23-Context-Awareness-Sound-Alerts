@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import {addToData} from "./db.js"
 import {getCount} from "./getCount.js"
-import exec from 'child_process'
+import {exec} from 'child_process'
 
 const app = express()
 const port = 22222
@@ -31,21 +31,21 @@ app.get('/getCount', (req, res) =>{
 
 app.post('/addData', (request, response)=>{
     const payload = request.body;
-    console.log("Got POST at /addData" + JSON.stringify(payload) + "\n");
+    console.log("Got POST at /addData\n");
     addToData(payload)
         .then((res)=>{
             response.send(JSON.stringify(res));
         }).then(()=>{
-            exec("pwd", (error, stdout, stderr) => {
+            exec("python3 ../tools/create_csv.py", (error, stdout, stderr) => {
                 if (error) {
-                    console.log(`error: ${error.message}`);
+                    console.log(`error running python script: ${error.message}`);
                     return;
                 }
                 if (stderr) {
                     console.log(`stderr: ${stderr}`);
                     return;
                 }
-                console.log(`stdout: ${stdout}`);
+                console.log(`\n***Running python script to build csv from data***\ncsv created in server/test.csv\n`);
             })
     })
 
