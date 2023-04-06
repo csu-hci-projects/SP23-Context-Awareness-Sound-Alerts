@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import {addToData} from "./db.js"
 import {getCount} from "./getCount.js"
+import exec from 'child_process'
 
 const app = express()
 const port = 22222
@@ -34,7 +35,20 @@ app.post('/addData', (request, response)=>{
     addToData(payload)
         .then((res)=>{
             response.send(JSON.stringify(res));
-        })
+        }).then(()=>{
+            exec("pwd", (error, stdout, stderr) => {
+                if (error) {
+                    console.log(`error: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.log(`stderr: ${stderr}`);
+                    return;
+                }
+                console.log(`stdout: ${stdout}`);
+            })
+    })
+
 })
 
 // Makes everything in the media folder available over http
