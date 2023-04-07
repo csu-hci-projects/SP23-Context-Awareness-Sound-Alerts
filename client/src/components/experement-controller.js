@@ -7,7 +7,7 @@ export default function ExperimentController(props){
 
     const NUM_PHASES = 3;
     const [currentPhase, setCurrentPhase] = useState(0);
-    const [breakTime, setBreakTime] = useState(false);
+    const [breakTime, setBreakTime] = useState(true);
 
     const nextPhase = ()=> {
        if(currentPhase >= NUM_PHASES - 1){

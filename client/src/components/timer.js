@@ -18,7 +18,7 @@ export default function Timer(props){
 
     return(
         <div className={"timer"}>
-            <h2>Break Time</h2>
+            <h2>Next Experiment Beginning In:</h2>
             <h2 className={"timer-time-left"}>Time Left: {timeLeft.getMinutes()}:{timeLeft.getUTCSeconds().toPrecision(2)}</h2>
         </div>
     )
