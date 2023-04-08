@@ -16,7 +16,7 @@ export default function App(){
     // and don't want to have to click through every time it reloads.
     const [pageIndex, setPageIndex] = useState(0);
     const [experimentState, setExperimentState] = useState(()=>new subject(undefined, undefined));
-    const [debug, setDebug] = useState(true);
+    const [debug, setDebug] = useState(false);
 
     const context = {
         pageIndex: pageIndex,

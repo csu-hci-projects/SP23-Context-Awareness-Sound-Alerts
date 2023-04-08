@@ -134,5 +134,14 @@
   font-family: monospace;
 }
 
-.auto-save-result {
+.hide-debug {
+  height: 15px;
+  width: 25px;
+  position: absolute;
+  left:0;
+  top: 0;
+}
+
+.hide-debug:hover{
+  cursor: pointer;
 }
