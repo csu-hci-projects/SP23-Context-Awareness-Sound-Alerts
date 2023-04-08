@@ -5,7 +5,7 @@ export default function SaveButton(props){
     const awaiting = "⬜ awaiting...";
     const pending = "🔁 working...";
     const success = "✅ it worked! saved with database ID:";
-    const fail = "❌ fuck";
+    const fail = "❌ error";
     const [status, setStatus] = useState(awaiting);
     const [returnID, setReturnID] = useState(undefined);
 
@@ -13,23 +13,9 @@ export default function SaveButton(props){
         return returnID ? returnID : null
     }
 
-    const submitData =  async (data) => {
-        const url = "http://localhost:22222/addData"
-        const config = {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }
-        const response = await fetch(url, config);
-        return response.json();
-    }
-
     const handleClick = () =>{
         setStatus(pending);
-        submitData(props.context.experimentState)
+        props.save(props.context.experimentState)
             .then((result)=>{
                 if (result.success === true){
                     setStatus(success)

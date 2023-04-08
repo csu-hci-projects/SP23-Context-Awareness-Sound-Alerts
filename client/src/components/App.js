@@ -29,32 +29,32 @@ export default function App(){
 
     const root = {
         name: "start",
-        element: <Root context={context}/>
+        element: ()=> <Root context={context}/>
     }
 
     const taskDescription = {
         name: "hearingTest",
-        element: <TaskDescription context={context}/>
+        element: ()=> <TaskDescription context={context}/>
     }
 
     const demographicsForm = {
         name: "demographicsForm",
-        element: <DemographicForm context={context}/>
+        element: ()=> <DemographicForm context={context}/>
     }
 
     const sampleTask = {
         name: "sampleTask",
-        element: <SampleTask context={context}/>
+        element: ()=> <SampleTask context={context}/>
     }
 
     const experiment = {
         name: "experiment",
-        element: <ExperimentController context={context}/>
+        element: ()=> <ExperimentController context={context}/>
     }
 
     const exportData = {
         name: "export",
-        element: <Export context={context}/>
+        element: ()=> <Export context={context}/>
     }
 
     // We don't want to show the nav bar during the experiment
@@ -76,7 +76,7 @@ export default function App(){
     return(
         <div className={"App"}>
             <div className={"content-container"}>
-                {pageOrder[pageIndex].element}
+                {pageOrder[pageIndex].element()}
             </div>
             {showNavBar()}
             <DebugButton context={context}/>
