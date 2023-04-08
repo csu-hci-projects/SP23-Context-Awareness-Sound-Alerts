@@ -133,3 +133,15 @@
   margin: 1px;
   font-family: monospace;
 }
+
+.hide-debug {
+  height: 15px;
+  width: 25px;
+  position: absolute;
+  left:0;
+  top: 0;
+}
+
+.hide-debug:hover{
+  cursor: pointer;
+}

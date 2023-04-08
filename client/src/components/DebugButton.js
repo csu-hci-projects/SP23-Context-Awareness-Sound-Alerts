@@ -6,9 +6,8 @@ export default function DebugButton({context}){
     }
 
     return(
-        <div className={"debug debug-alert-sound"}>
-            <p>Debug</p>
-            <Input type={"switch"} onChange={handleClick} checked={context.debug}/>
+        <div className={"debug debug-alert-sound hide-debug"} onClick={handleClick}>
+            {/*<Input type={"switch"} onChange={handleClick} checked={context.debug}/>*/}
         </div>
     )
 }
