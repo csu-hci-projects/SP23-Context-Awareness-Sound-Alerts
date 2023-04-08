@@ -7,7 +7,7 @@ export default function NavBar(props){
 
     return(
         <div className={"navBar"}>
-            <PreviousPageButton context={props.context}/>
+            {props.context.debug ? <PreviousPageButton context={props.context}/> : null}
             <NextPageButton context={props.context}/><br/>
             <Data subject={props.context.experimentState} context={props.context}/>
         </div>
