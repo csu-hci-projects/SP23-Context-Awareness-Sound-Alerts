@@ -10,19 +10,22 @@
 
 .content-container{
   width: 100%;
-  height: 75vh;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .content{
   width:100%;
+  max-width: 800px;
   font-family: sans-serif;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 4vh;
+  box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.4);
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  padding-bottom: 20px;
 }
 
 .App-logo {
@@ -35,11 +38,7 @@
 }
 
 .form-container{
-  top: 30px;
   font-family: sans-serif;
-  position: fixed;
-  max-height: 80%;
-  overflow-y: scroll;
 
 }
 
@@ -71,7 +70,7 @@
   width: 100vw;
 }
 
-.navButton {
+.Button {
   background-color: rgb(239, 239, 239);
   font-family: sans-serif;
   border: none;
@@ -82,7 +81,7 @@
   position: sticky;
 }
 
-.navButton:hover {
+.Button:hover {
   cursor: pointer;
   background-color: rgb(200, 200, 200);
   transition: background-color .25s;
@@ -145,3 +144,54 @@
 .hide-debug:hover{
   cursor: pointer;
 }
+.text-container{
+  width: 95%;
+  text-align: left;
+  padding: 30px;
+
+}
+
+.text-body {
+  font-size: 1.25em;
+  text-align: left;
+  margin: 10px;
+}
+
+.text-body strong{
+  font-style: italic;
+  font-weight: bold;
+}
+
+hr {
+  border: 3px solid #5F5F5F;
+  border-radius: 10px;
+  width: 65%;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.number {
+  color: aquamarine;
+  font-size: 1.1em;
+  font-style: italic;
+}
+
+.example-container {
+  width: 100%;
+  text-align: center;
+}
+
+.example {
+  padding: 30px;
+  background-color: rgba(0,0,0, .25);
+  display: inline-block;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.wpm-test {
+  height: 200px;
+}
+

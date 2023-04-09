@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Button} from "reactstrap";
-import BackgroundSound from "../components/BackgroundSound";
-import WPMtest from "../components/WPMtest";
-import AlertSoundController from "../components/alert-sound-controller";
+import BackgroundSound from "./BackgroundSound";
+import WPMtest from "./WPMtest";
+import AlertSoundController from "./alert-sound-controller";
 
 export default function Experiment(props) {
     const phaseData = props.context.experimentState.phaseData[props.currentPhase]
@@ -29,7 +29,7 @@ export default function Experiment(props) {
             <Button className={"action-button"} onClick={handleActionClick}>Click Here When You Hear An Alert</Button>
             <WPMtest context={props.context} text={props.config.typingText} phaseData={phaseData}/>
             <AlertSoundController context={props.context} alertOrder={props.alertOrder} currentPhase={props.currentPhase}/>
-            {props.context.debug ? <Button className={"navButton"} onClick={props.nextPhase}>Manual Phase Advance</Button> : null}
+            {props.context.debug ? <Button className={"Button"} onClick={props.nextPhase}>Manual Phase Advance</Button> : null}
         </div>
     )
 }
