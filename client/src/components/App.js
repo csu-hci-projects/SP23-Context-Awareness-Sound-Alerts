@@ -5,7 +5,7 @@ import DemographicForm from "../pages/demographicForm";
 import subject from "../data/Subject";
 import Export from "../pages/export";
 import NavBar from "./NavBar";
-import ExperimentController from "./experement-controller";
+import ExperimentController from "../pages/experement-controller";
 import DebugButton from "./DebugButton";
 import SampleTask from "../pages/SampleTask";
 
@@ -59,7 +59,7 @@ export default function App(){
 
     // We don't want to show the nav bar during the experiment
     const showNavBar = ()=> {
-        if(pageIndex == 5){
+        if(pageIndex == 4){
             return debug ? <NavBar context={context}/> : null
         } else {
             return <NavBar context={context}/>

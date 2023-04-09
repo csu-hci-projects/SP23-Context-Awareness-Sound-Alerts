@@ -1,13 +1,13 @@
 import React, {useEffect, useRef, useState} from "react";
-import Experiment from "../pages/experiment";
-import BreakTimer from "./break-timer";
-import {alertConfig} from "./alertConfig";
+import Experiment from "../components/experiment";
+import BreakTimer from "../components/break-timer";
+import {alertConfig} from "../components/alertConfig";
 
 export default function ExperimentController(props){
 
     const NUM_PHASES = 3;
     const [currentPhase, setCurrentPhase] = useState(0);
-    const [breakTime, setBreakTime] = useState(true);
+    const [breakTime, setBreakTime] = useState(false);
 
     const nextPhase = ()=> {
        if(currentPhase >= NUM_PHASES - 1){

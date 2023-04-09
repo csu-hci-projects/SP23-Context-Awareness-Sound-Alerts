@@ -34,7 +34,7 @@ export default function SaveButton(props){
     return(
         <div className={"save-button"}>
 
-            <Button className={"navButton"} onClick={handleClick}>Save Data to Database</Button>
+            <Button className={"Button"} onClick={handleClick}>Save Data to Database</Button>
             <p>Status: {status}</p>
             {displayReturnID()}
         </div>
