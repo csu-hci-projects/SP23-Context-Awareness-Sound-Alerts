@@ -22,7 +22,11 @@ export default function WPMtest(props) {
             case "SET_INPUT_STYLE":
                 return { ...state, inputStyle: action.payload };
             case "INCREMENT_INDEX":
-                return { ...state, currentIndex: state.currentIndex + 1, startTime: null };
+                return { 
+                    ...state,
+                    currentIndex: (state.currentIndex + 1) % state.sentences.length,
+                    startTime: null,
+                };
             case "RESET":
                 return { ...initialState, sentences: action.payload.split(". ") };
             default:
