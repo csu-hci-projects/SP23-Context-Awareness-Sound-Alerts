@@ -43,7 +43,7 @@ export default function Export(props){
             <h1>Debrief</h1>
             {props.context.debug ? <h1>Data:</h1> : null}
             {props.context.debug ? <p>{props.context.experimentState.toString()}</p> : null}
-            {autoSaveOrShowManual()}<p className={"text-body"}>Data Submitted: {autoSaveResult}</p>
+            {autoSaveOrShowManual()}{props.context.debug ? null : <p className={"text-body"}>Data Submitted: {autoSaveResult}</p>}
             {props.context.debug ? <ClearDatabaseButton/> : null}
         </div>
     )
