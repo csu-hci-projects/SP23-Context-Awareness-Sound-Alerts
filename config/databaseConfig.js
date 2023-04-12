@@ -1,3 +1,4 @@
-export const collection = "test-collection";
-
-export const database = "test";
+module.exports = {
+    database: "test",
+    collection: "test-collection",
+};

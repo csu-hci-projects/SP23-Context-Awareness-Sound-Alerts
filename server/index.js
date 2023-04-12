@@ -1,8 +1,9 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import {addToData} from "./db.js"
+import {addToData} from "./addToData.js"
 import {getCount} from "./getCount.js"
+import {clearDatabase} from "./clearDatabase.js";
 
 const app = express()
 const port = 22222
@@ -29,14 +30,13 @@ app.get('/getCount', (req, res) =>{
 })
 
 app.get('/clear', (req, res) =>{
-    getCount()
-        .then((count)=>{
-            const returnPayolad = JSON.stringify(count);
-            res.send(returnPayolad);
-            console.log("Sending return payload " + returnPayolad+ "\n");
+    clearDatabase()
+        .then((result)=>{
+            const returnPayload = JSON.stringify(result);
+            res.send(returnPayload);
         })
         .catch((err)=>{
-            console.log("ERROR getting count"+ "\n");
+            console.log("ERROR clearing database."+ "\n");
             res.send(JSON.stringify(err));
         })
 })

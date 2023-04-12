@@ -11,7 +11,7 @@ export default function Root(props) {
             .then((response)=>{
                 setCount(response.count)
             });
-        console.log("getExperimentCount from root component mount")
+        console.log("getExperimentCount() from root component mount")
     }, [])
 
     const debugGuard = ()=>{
@@ -19,7 +19,7 @@ export default function Root(props) {
             return(
                 <div>
                     <p>Number of experiments already performed:</p>
-                    <p>{count ? count : "Hmmm... Maybe you're not connected to the server..."}</p>
+                    <p>{count !== undefined ? count : "Hmmm... Maybe you're not connected to the server..."}</p>
                 </div>
             )
         } else {
