@@ -1,3 +1,4 @@
+import numpy as np
 from pymongo import MongoClient
 import pandas as pd
 
@@ -61,7 +62,7 @@ def get_data(item, phases):
             else:
                 result.append(data_source[d](phases))
         except KeyError:
-            result.append("NA")
+            result.append(np.nan)
             print(f"Error retrieving {d} from: \nObject:{str(item['_id'])} GroupID:{item['groupID']}")
         except:
             print("Unknown Error getting data")
@@ -73,7 +74,7 @@ def pad_with_zeros(clicks: list, maxInt: int):
     result = list()
     for i in range(maxInt):
         if i >= len(clicks):
-            result.append('NA')
+            result.append(np.nan)
         else:
             result.append(clicks[i])
 
@@ -133,3 +134,9 @@ def create_pandas():
 def get_all_data():
     return create_pandas()
 
+
+if __name__ == "__main__":
+    # Create a pandas DataFrame
+    final_data, clicks = get_all_data()
+    print(clicks)
+    pass
