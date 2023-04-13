@@ -1,5 +1,5 @@
 import getExperimentCount from "../api/getExperimentCount"
-import { experimentConfigA, experimentConfigB, experimentConfigC } from "../components/ExperimentDesign";
+import { experimentArray } from "../components/ExperimentDesign";
 import {UserActionData} from "./UserActionData";
 
 export default class subject {
@@ -26,7 +26,6 @@ export default class subject {
         this.assignedExperiment = knownAssignedExperiment ? knownAssignedExperiment : AssignExp(this.groupID);
     }
 
-
     getCopy(){
         let copy = new subject(this.groupID, this.assignedExperiment);
         copy.gender = this.gender;
@@ -45,41 +44,8 @@ export default class subject {
         return JSON.stringify(this);
         }
 
-    set gender(genderInput) {
-        this.gender = genderInput;
-    }
-
-    set age(ageInput) {
-        this.age = ageInput;
-    }
-
-    set computerUse(computerUseInput) {
-        this.computerUse = computerUseInput;
-    }
-
-    set groupID(groupIDInput){
-        this.groupID = groupIDInput;
-    }
-
-
     set actions(actionsInput){
         this.phaseData.push(actionsInput);
-    }
-
-    get groupID() {
-        return this.groupID;
-    }
-
-    get computerUse() {
-        return this.computerUse;
-    }
-
-    get age() {
-        return this.age;
-    }
-
-    get gender() {
-        return this.gender;
     }
 
     get actions(){
@@ -87,16 +53,26 @@ export default class subject {
     }
 }
 
-function generate_groupID() {
+async function generate_groupID() {
     let unique_id_num; //store unique id number
     let group_char;
     let final_id;
-    let entries;
-    getExperimentCount().then((count)=> {entries = count});
+    
+    //getExperimentCount().then((count)=> {entries = JSON.stringify(count)});
+
+    async function run() {
+        const entries = await getExperimentCount();
+        return entries;
+    }
+    
+    let expCount;
+    let resultobj 
+    resultobj = await run();
+    expCount = resultobj.count;
+
     console.log("getExperimentCount from Subject constructor")
-
-
-    switch (entries) {
+    console.log("number for switch statement:", expCount, typeof expCount)
+    switch (expCount) {
         case 0:
             group_char = 'A';
             break;
@@ -107,31 +83,31 @@ function generate_groupID() {
             group_char = 'C';
             break;
         case 3: 
-            group_char = 'A';
+            group_char = 'D';
             break;
         case 4:
-            group_char = 'B'
-            break;
-        case 5:
-            group_char = 'C'
-            break;
-        case 6:
             group_char = 'A'
             break;
+        case 5:
+            group_char = 'B'
+            break;
+        case 6:
+            group_char = 'C'
+            break;
         case 7:
-            group_char = 'B';
+            group_char = 'D';
             break;
         case 8:
-            group_char = 'C';
-            break;
-        case 9: 
             group_char = 'A';
             break;
-        case 10: 
+        case 9: 
             group_char = 'B';
             break;
-        case 11:
+        case 10: 
             group_char = 'C';
+            break;
+        case 11:
+            group_char = 'D';
             break;
         case 12:
             group_char = 'A';
@@ -139,32 +115,84 @@ function generate_groupID() {
         case 13:
             group_char = 'B';
             break;
-        default:
+        case 14:
+            group_char = 'C';
+            break;
+        case 15:
+            group_char = 'D';
+            break;
+        case 16: 
+            group_char = 'A';
+            break;
+        case 17: 
+            group_char = 'B';
+            break;
+        case 18:
             group_char = 'C'
+            break;
+        case 19:
+            group_char = 'D'
+            break;
+        case 20:
+            group_char = 'A'
+            break;
+        case 21:
+            group_char = 'B';
+            break;
+        case 22:
+            group_char = 'C';
+            break;
+        case 23: 
+            group_char = 'D';
+            break;
+        default:
+            group_char = 'Z'
     }
 
     //randomly generate id for subject, can change to something with a standard distribution
-
+    
     unique_id_num = Math.floor(Math.random() * (10000))
     unique_id_num = unique_id_num.toString();
     final_id = group_char.concat("-", unique_id_num);
+    console.log("finalID: ", final_id);
+    
     return final_id;
 }
 
-function AssignExp(groupID) {
+async function AssignExp(groupID) {
 
+    console.log("groupID:", groupID);
     let group_char = groupID.charAt(0)
     let experiment_group;
+    let entries;
 
-    switch (group_char) {
-        case 'A':
-            experiment_group = experimentConfigA;
-            break;
-        case 'B':
-            experiment_group = experimentConfigB;
-            break;
-        default:
-            experiment_group = experimentConfigC;
+    //Destructure array
+    const {exp0, exp1, exp2, exp3, exp4, exp5, exp6, exp7, exp8, exp9, exp10, exp11} = experimentArray;
+
+    if (group_char === 'A' && (entries === 0 || entries === 4)) {
+        experiment_group = exp0;
+    } else if (group_char === 'A' && (entries === 8 || entries === 12)) {
+        experiment_group = exp1;
+    } else if (group_char === 'A' && (entries === 16 || entries === 20)) {
+        experiment_group = exp2;
+    } else if (group_char === 'B' && (entries === 1 || entries === 5)) {
+        experiment_group = exp3;
+    } else if (group_char === 'B' && (entries === 9 || entries === 13)) {
+        experiment_group = exp4;
+    } else if (group_char === 'B' && (entries === 17 || entries === 21)) {
+        experiment_group = exp5;
+    } else if (group_char === 'C' && (entries === 2 || entries === 6)) {
+        experiment_group = exp6;
+    } else if (group_char === 'C' && (entries === 10 || entries === 14)) {
+        experiment_group = exp7;
+    } else if (group_char === 'C' && (entries === 18 || entries === 22)) {
+        experiment_group = exp8;
+    } else if (group_char === 'D' && (entries === 3 || entries === 7)) {
+        experiment_group = exp9;
+    } else if (group_char === 'D' && (entries === 11 || entries === 15)) {
+        experiment_group = exp10;
+    } else if (group_char === 'D' && (entries === 19 || entries === 23)) {
+        experiment_group = exp11;
     }
 
     return experiment_group;
