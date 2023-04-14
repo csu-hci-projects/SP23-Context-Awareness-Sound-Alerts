@@ -1,5 +1,5 @@
 import getExperimentCount from "../api/getExperimentCount"
-import { experimentArray } from "../components/ExperimentDesign";
+import { experimentArray, experimentConfig0 } from "../components/ExperimentDesign";
 import {UserActionData} from "./UserActionData";
 
 export default class subject {
@@ -22,8 +22,17 @@ export default class subject {
 
         // If GroupID of AssignedExperiment is already known, don't
         //   use an API call to generate new data
-        this.groupID = knownGroupID ? knownGroupID : generate_groupID();
-        this.assignedExperiment = knownAssignedExperiment ? knownAssignedExperiment : AssignExp(this.groupID);
+        //this.groupID = knownGroupID ? knownGroupID : generate_groupID();
+        //this.assignedExperiment = knownAssignedExperiment ? knownAssignedExperiment : AssignExp(this.groupID);
+        if (knownGroupID) {
+            this.groupID = knownGroupID;
+            this.assignedExperiment = AssignExp(this.groupID);
+        } else {
+            generate_groupID().then((groupID) => {
+                this.groupID = groupID;
+                this.assignedExperiment = AssignExp(this.groupID);
+            });
+        }
     }
 
     getCopy(){
@@ -164,36 +173,46 @@ async function AssignExp(groupID) {
     console.log("groupID:", groupID);
     let group_char = groupID.charAt(0)
     let experiment_group;
-    let entries;
 
-    //Destructure array
-    const {exp0, exp1, exp2, exp3, exp4, exp5, exp6, exp7, exp8, exp9, exp10, exp11} = experimentArray;
+    async function run() {
+        const count = await getExperimentCount();
+        return count;
+    }
+    
+    let entries;
+    let resultobj 
+    resultobj = await run();
+    entries = resultobj.count;
+
+    console.log("My group char: ", group_char, "my entries: ", entries)
 
     if (group_char === 'A' && (entries === 0 || entries === 4)) {
-        experiment_group = exp0;
+        experiment_group = experimentArray.expArray[0];
     } else if (group_char === 'A' && (entries === 8 || entries === 12)) {
-        experiment_group = exp1;
+        experiment_group = experimentArray.expArray[1];
     } else if (group_char === 'A' && (entries === 16 || entries === 20)) {
-        experiment_group = exp2;
+        experiment_group = experimentArray.expArray[2];
     } else if (group_char === 'B' && (entries === 1 || entries === 5)) {
-        experiment_group = exp3;
+        experiment_group = experimentConfig0;
+        console.log(experiment_group, typeof experiment_group);
     } else if (group_char === 'B' && (entries === 9 || entries === 13)) {
-        experiment_group = exp4;
+        experiment_group = experimentArray.expArray[4];
     } else if (group_char === 'B' && (entries === 17 || entries === 21)) {
-        experiment_group = exp5;
+        experiment_group = experimentArray.expArray[5];
     } else if (group_char === 'C' && (entries === 2 || entries === 6)) {
-        experiment_group = exp6;
+        experiment_group = experimentArray.expArray[6];
     } else if (group_char === 'C' && (entries === 10 || entries === 14)) {
-        experiment_group = exp7;
+        experiment_group = experimentArray.expArray[7];
     } else if (group_char === 'C' && (entries === 18 || entries === 22)) {
-        experiment_group = exp8;
+        experiment_group = experimentArray.expArray[8];
     } else if (group_char === 'D' && (entries === 3 || entries === 7)) {
-        experiment_group = exp9;
+        experiment_group = experimentArray.expArray[9];
     } else if (group_char === 'D' && (entries === 11 || entries === 15)) {
-        experiment_group = exp10;
+        experiment_group = experimentArray.expArray[10];
     } else if (group_char === 'D' && (entries === 19 || entries === 23)) {
-        experiment_group = exp11;
+        experiment_group = experimentArray.expArray[11];
     }
 
+    console.log("my experiment group:", experiment_group);
     return experiment_group;
 }
