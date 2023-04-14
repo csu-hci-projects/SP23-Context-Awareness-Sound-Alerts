@@ -137,7 +137,7 @@ const expC_5 = {
 
 // All experiments will get packaged in an array
 // Along with which sequential number of the experiment this is
-export const experimentConfig0 = {
+const experimentConfig0 = {
     expID: 0,
     order: [expB_0, expA_0, expC_0]
 }

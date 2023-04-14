@@ -1,5 +1,5 @@
 import getExperimentCount from "../api/getExperimentCount"
-import { experimentArray, experimentConfig0 } from "../components/ExperimentDesign";
+import { experimentArray } from "../components/ExperimentDesign";
 import {UserActionData} from "./UserActionData";
 
 export default class subject {
@@ -22,11 +22,9 @@ export default class subject {
 
         // If GroupID of AssignedExperiment is already known, don't
         //   use an API call to generate new data
-        //this.groupID = knownGroupID ? knownGroupID : generate_groupID();
-        //this.assignedExperiment = knownAssignedExperiment ? knownAssignedExperiment : AssignExp(this.groupID);
         if (knownGroupID) {
             this.groupID = knownGroupID;
-            this.assignedExperiment = AssignExp(this.groupID);
+            AssignExp(this.groupID).then((experiment)=>this.assignedExperiment = experiment);
         } else {
             generate_groupID().then((groupID) => {
                 this.groupID = groupID;
@@ -67,8 +65,6 @@ async function generate_groupID() {
     let group_char;
     let final_id;
     
-    //getExperimentCount().then((count)=> {entries = JSON.stringify(count)});
-
     async function run() {
         const entries = await getExperimentCount();
         return entries;
@@ -193,7 +189,7 @@ async function AssignExp(groupID) {
     } else if (group_char === 'A' && (entries === 16 || entries === 20)) {
         experiment_group = experimentArray.expArray[2];
     } else if (group_char === 'B' && (entries === 1 || entries === 5)) {
-        experiment_group = experimentConfig0;
+        experiment_group = experimentArray.expArray[3];
         console.log(experiment_group, typeof experiment_group);
     } else if (group_char === 'B' && (entries === 9 || entries === 13)) {
         experiment_group = experimentArray.expArray[4];
