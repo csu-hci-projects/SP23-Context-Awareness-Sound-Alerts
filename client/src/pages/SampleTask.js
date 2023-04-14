@@ -32,9 +32,9 @@ export default function SampleTask({context}){
                     Please play the sounds below to get acquainted with what the alerts sound like.
                 </p>
             <Example>
-                <Button className={"Button"} onClick={()=> alert1.current.play()}>Alert Sound 1</Button><br/>
-                <Button className={"Button"} onClick={()=> alert2.current.play()}>Alert Sound 2</Button><br/>
-                <Button className={"Button"} onClick={()=> alert3.current.play()}>Alert Sound 3</Button><br/>
+                <Button className={"Button"} onClick={()=> alert1.current.play()}><i className={"fa fa-play-circle-o"}></i> Alert Sound 1</Button><br/>
+                <Button className={"Button"} onClick={()=> alert2.current.play()}><i className={"fa fa-play-circle-o"}></i> Alert Sound 2</Button><br/>
+                <Button className={"Button"} onClick={()=> alert3.current.play()}><i className={"fa fa-play-circle-o"}></i> Alert Sound 3</Button><br/>
             </Example>
                 <hr/>
                 <p className={"text-body"}>
