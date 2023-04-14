@@ -8,6 +8,7 @@ export default function BackgroundSound(props){
 
     useEffect(()=>{
         if(play){
+            audio.volume = props.config.volume
             audio.play()
                 .catch((err)=>{
                     console.log("Error Playing BackgroundSound: " + err)
@@ -21,6 +22,7 @@ export default function BackgroundSound(props){
 
     // Kill the background sound when the component unmounts
     useEffect(()=>{
+        audio.volume = props.config.volume
         audio.play();
 
         return ()=>{
