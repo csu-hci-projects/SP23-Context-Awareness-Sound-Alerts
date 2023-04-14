@@ -30,7 +30,7 @@ export default class subject {
         } else {
             generate_groupID().then((groupID) => {
                 this.groupID = groupID;
-                this.assignedExperiment = AssignExp(this.groupID);
+                AssignExp(this.groupID).then((experiment)=>this.assignedExperiment = experiment);
             });
         }
     }
