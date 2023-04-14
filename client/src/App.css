@@ -1,3 +1,11 @@
+:root {
+  --offWhite: #EDEDED;
+  --lightBrown: #9A8074;
+  --brown: #765D51;
+  --darkBrown: #6c6363;
+  --darkerBrown: #534c4c;
+}
+
 .App {
   text-align: center;
   min-height: 100vh;
@@ -5,7 +13,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: normal;
-  background-color: #282c34
+  background-color: var(--offWhite);
 }
 
 .content-container{
@@ -18,12 +26,12 @@
   width:100%;
   max-width: 800px;
   font-family: sans-serif;
-  color: white;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 4vh;
-  box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.4); */
   /* offset-x | offset-y | blur-radius | spread-radius | color */
   padding-bottom: 20px;
 }
@@ -70,36 +78,63 @@
   width: 100vw;
 }
 
-.Button {
-  background-color: rgb(239, 239, 239);
+.ContinueButton {
+  background-color: var(--lightBrown);
   font-family: sans-serif;
+  text-decoration: underline;  
+  text-underline-offset: 3px;
+  color: var(--offWhite);
   border: none;
-  padding: 5px;
+  padding: 8px 16px 10px;
+  margin: 5px;
+  margin-bottom: 50px;
+  font-size: 16pt;
+  border-radius: 22px;
+  position: sticky;
+}
+
+.ContinueButton:hover{
+  cursor: pointer;
+  background-color: var(--brown);
+  transition: background-color .25s;
+}
+
+.Button {
+  background-color: var(--lightBrown);
+  font-family: sans-serif;
+  text-decoration: underline;  
+  text-underline-offset: 3px;
+  color: var(--offWhite);
+  border: none;
+  padding: 8px 16px 10px;
   margin: 5px;
   font-size: 16pt;
-  border-radius: 8px;
+  border-radius: 22px;
   position: sticky;
 }
 
 .Button:hover {
   cursor: pointer;
-  background-color: rgb(200, 200, 200);
+  background-color: var(--brown);
   transition: background-color .25s;
 }
 
 .action-button {
-  background-color: rgb(239, 239, 239);
+  background-color: var(--darkBrown);
   font-family: sans-serif;
+  text-decoration: underline;  
+  text-underline-offset: 3px;
+  color: var(--offWhite);
   border: none;
-  padding: 5px;
+  padding: 8px 16px 10px;
   margin: 5px;
   font-size: 16pt;
-  border-radius: 8px;
+  border-radius: 22px;
 }
 
 .action-button:hover {
   cursor: pointer;
-  background-color: rgb(200, 200, 200);
+  background-color: var(--darkerBrown);
 }
 
 .action-button:active {
@@ -193,6 +228,13 @@ hr {
 
 .wpm-test {
   height: 200px;
+}
+
+.text-area {
+  min-height: 120px;
+  width: 100%;
+  padding: 0.625rem;
+  /* resize: vertical; */
 }
 
 .danger-button {

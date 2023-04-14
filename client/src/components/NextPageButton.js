@@ -7,6 +7,6 @@ export default function NextPageButton(props){
         props.context.setPageIndex((props.context.pageIndex + 1) % numPages)
     }
     return(
-        <Button className={"Button"} onClick={nextPage}>Continue ></Button>
+        <Button className={"ContinueButton"} onClick={nextPage}>Continue</Button>
     )
 }
