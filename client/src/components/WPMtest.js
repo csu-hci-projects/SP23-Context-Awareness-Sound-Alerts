@@ -90,6 +90,7 @@ export default function WPMtest(props) {
                 <b>{currentSentence}</b>
             </p>
             <textarea
+                className={"text-area"}
                 placeholder="Type the above sentence as fast and as accurately as possible"
                 rows={3}
                 cols={50}
