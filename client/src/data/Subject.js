@@ -1,5 +1,5 @@
 import getExperimentCount from "../api/getExperimentCount"
-import { experimentConfigA, experimentConfigB, experimentConfigC } from "../components/ExperimentDesign";
+import {experimentArray} from "../components/ExperimentDesign";
 import {UserActionData} from "./UserActionData";
 
 export default class subject {
@@ -16,18 +16,39 @@ export default class subject {
     #NUMBER_OF_PHASES = 3;
 
     constructor(knownGroupID, knownAssignedExperiment) {
-        for (let i = 0; i < this.#NUMBER_OF_PHASES; i++){
+        for (let i = 0; i < this.#NUMBER_OF_PHASES; i++) {
             this.phaseData.push(new UserActionData())
         }
 
         // If GroupID of AssignedExperiment is already known, don't
         //   use an API call to generate new data
-        this.groupID = knownGroupID ? knownGroupID : generate_groupID();
-        this.assignedExperiment = knownAssignedExperiment ? knownAssignedExperiment : AssignExp(this.groupID);
+        if (knownGroupID) {
+            this.groupID = knownGroupID;
+            if (knownAssignedExperiment) {
+                this.assignedExperiment = knownAssignedExperiment;
+            } else {
+                getExperimentCount()
+                    .then((count) => {
+                        this.groupID = generate_groupID(count)
+                        this.assignedExperiment = AssignExp(id, count)
+                    })
+                    .catch(() => {
+                        console.log("Error getting experiment count.")
+                    })
+            }
+        } else {
+            getExperimentCount()
+                .then(({count}) => {
+                    this.groupID = generate_groupID(count)
+                    this.assignedExperiment = AssignExp(this.groupID, count)
+                })
+                .catch(() => {
+                    console.log("Error getting experiment count.")
+                })
+        }
     }
 
-
-    getCopy(){
+    getCopy() {
         let copy = new subject(this.groupID, this.assignedExperiment);
         copy.gender = this.gender;
         copy.age = this.age;
@@ -41,97 +62,60 @@ export default class subject {
         return copy;
     }
 
-    toString(){
+    toString() {
         return JSON.stringify(this);
-        }
-
-    set gender(genderInput) {
-        this.gender = genderInput;
     }
 
-    set age(ageInput) {
-        this.age = ageInput;
-    }
-
-    set computerUse(computerUseInput) {
-        this.computerUse = computerUseInput;
-    }
-
-    set groupID(groupIDInput){
-        this.groupID = groupIDInput;
-    }
-
-
-    set actions(actionsInput){
+    set actions(actionsInput) {
         this.phaseData.push(actionsInput);
     }
 
-    get groupID() {
-        return this.groupID;
-    }
-
-    get computerUse() {
-        return this.computerUse;
-    }
-
-    get age() {
-        return this.age;
-    }
-
-    get gender() {
-        return this.gender;
-    }
-
-    get actions(){
+    get actions() {
         return this.phaseData;
     }
 }
 
-function generate_groupID() {
+function generate_groupID(lastExperimentIndex) {
     let unique_id_num; //store unique id number
     let group_char;
     let final_id;
-    let entries;
-    getExperimentCount().then((count)=> {entries = count});
-    console.log("getExperimentCount from Subject constructor")
 
-
-    switch (entries) {
+    switch (lastExperimentIndex) {
         case 0:
             group_char = 'A';
             break;
         case 1:
             group_char = 'B';
             break;
-        case 2: 
+        case 2:
             group_char = 'C';
             break;
-        case 3: 
-            group_char = 'A';
+        case 3:
+            group_char = 'D';
             break;
         case 4:
-            group_char = 'B'
-            break;
-        case 5:
-            group_char = 'C'
-            break;
-        case 6:
             group_char = 'A'
             break;
+        case 5:
+            group_char = 'B'
+            break;
+        case 6:
+            group_char = 'C'
+            break;
         case 7:
-            group_char = 'B';
+            group_char = 'D';
             break;
         case 8:
-            group_char = 'C';
-            break;
-        case 9: 
             group_char = 'A';
             break;
-        case 10: 
+        case 9:
             group_char = 'B';
             break;
-        case 11:
+        case 10:
             group_char = 'C';
+            break;
+        case 11:
+            group_char = 'D';
             break;
         case 12:
             group_char = 'A';
@@ -139,8 +123,38 @@ function generate_groupID() {
         case 13:
             group_char = 'B';
             break;
-        default:
+        case 14:
+            group_char = 'C';
+            break;
+        case 15:
+            group_char = 'D';
+            break;
+        case 16:
+            group_char = 'A';
+            break;
+        case 17:
+            group_char = 'B';
+            break;
+        case 18:
             group_char = 'C'
+            break;
+        case 19:
+            group_char = 'D'
+            break;
+        case 20:
+            group_char = 'A'
+            break;
+        case 21:
+            group_char = 'B';
+            break;
+        case 22:
+            group_char = 'C';
+            break;
+        case 23:
+            group_char = 'D';
+            break;
+        default:
+            group_char = 'Z'
     }
 
     //randomly generate id for subject, can change to something with a standard distribution
@@ -148,24 +162,44 @@ function generate_groupID() {
     unique_id_num = Math.floor(Math.random() * (10000))
     unique_id_num = unique_id_num.toString();
     final_id = group_char.concat("-", unique_id_num);
+
     return final_id;
 }
 
-function AssignExp(groupID) {
+function AssignExp(groupID, lastExperimentIndex) {
 
+    console.log("groupID:", groupID);
     let group_char = groupID.charAt(0)
     let experiment_group;
 
-    switch (group_char) {
-        case 'A':
-            experiment_group = experimentConfigA;
-            break;
-        case 'B':
-            experiment_group = experimentConfigB;
-            break;
-        default:
-            experiment_group = experimentConfigC;
+    console.log("My group char: ", group_char, "my lastExperimentIndex: ", lastExperimentIndex)
+
+    if (group_char === 'A' && (lastExperimentIndex === 0 || lastExperimentIndex === 4)) {
+        experiment_group = experimentArray.expArray[0];
+    } else if (group_char === 'A' && (lastExperimentIndex === 8 || lastExperimentIndex === 12)) {
+        experiment_group = experimentArray.expArray[1];
+    } else if (group_char === 'A' && (lastExperimentIndex === 16 || lastExperimentIndex === 20)) {
+        experiment_group = experimentArray.expArray[2];
+    } else if (group_char === 'B' && (lastExperimentIndex === 1 || lastExperimentIndex === 5)) {
+        experiment_group = experimentArray.expArray[3];
+    } else if (group_char === 'B' && (lastExperimentIndex === 9 || lastExperimentIndex === 13)) {
+        experiment_group = experimentArray.expArray[4];
+    } else if (group_char === 'B' && (lastExperimentIndex === 17 || lastExperimentIndex === 21)) {
+        experiment_group = experimentArray.expArray[5];
+    } else if (group_char === 'C' && (lastExperimentIndex === 2 || lastExperimentIndex === 6)) {
+        experiment_group = experimentArray.expArray[6];
+    } else if (group_char === 'C' && (lastExperimentIndex === 10 || lastExperimentIndex === 14)) {
+        experiment_group = experimentArray.expArray[7];
+    } else if (group_char === 'C' && (lastExperimentIndex === 18 || lastExperimentIndex === 22)) {
+        experiment_group = experimentArray.expArray[8];
+    } else if (group_char === 'D' && (lastExperimentIndex === 3 || lastExperimentIndex === 7)) {
+        experiment_group = experimentArray.expArray[9];
+    } else if (group_char === 'D' && (lastExperimentIndex === 11 || lastExperimentIndex === 15)) {
+        experiment_group = experimentArray.expArray[10];
+    } else if (group_char === 'D' && (lastExperimentIndex === 19 || lastExperimentIndex === 23)) {
+        experiment_group = experimentArray.expArray[11];
     }
 
+    console.log("my experiment group:", experiment_group);
     return experiment_group;
 }
