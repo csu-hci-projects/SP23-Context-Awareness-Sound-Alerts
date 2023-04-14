@@ -4,7 +4,6 @@ export class UserActionData{
     experimentEndTime;
     alertTimes = [undefined, undefined, undefined];
     userClick = [];
-    // TODO: data doesn't make it here yet
     wpm;
     // TODO: errors aren't calculated yet
     errors;
