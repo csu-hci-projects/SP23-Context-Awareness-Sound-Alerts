@@ -24,8 +24,15 @@ export default class subject {
         //   use an API call to generate new data
         if (knownGroupID) {
             this.groupID = knownGroupID;
-            AssignExp(this.groupID).then((experiment)=>this.assignedExperiment = experiment);
+            if (knownAssignedExperiment){
+                this.assignedExperiment = knownAssignedExperiment;
+            } else {
+                AssignExp(this.groupID).then((experiment)=>this.assignedExperiment = experiment);
+            }
         } else {
+            getExperimentCount().then((count)=>{
+                const id = generate_groupID(count)
+            });
             generate_groupID().then((groupID) => {
                 this.groupID = groupID;
                 AssignExp(this.groupID).then((experiment)=>this.assignedExperiment = experiment);
@@ -60,7 +67,7 @@ export default class subject {
     }
 }
 
-async function generate_groupID() {
+async function generate_groupID(currentExerimentIndex) {
     let unique_id_num; //store unique id number
     let group_char;
     let final_id;
