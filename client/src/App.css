@@ -76,7 +76,7 @@
   width: 100vw;
 }
 
-.Button {
+.ContinueButton {
   background-color: var(--brown);
   font-family: sans-serif;
   text-decoration: underline;  
@@ -86,6 +86,27 @@
   padding: 8px 16px 10px;
   margin: 5px;
   margin-bottom: 50px;
+  font-size: 16pt;
+  border-radius: 22px;
+  position: sticky;
+}
+
+.ContinueButton:hover{
+  cursor: pointer;
+  background-color: var(--darkBrown);
+  transition: background-color .25s;
+}
+
+.Button {
+  background-color: var(--brown);
+  font-family: sans-serif;
+  text-decoration: underline;  
+  text-underline-offset: 3px;
+  color: var(--offWhite);
+  border: none;
+  padding: 8px 16px 10px;
+  margin: 5px;
+  /* margin-bottom: 50px; */
   font-size: 16pt;
   border-radius: 22px;
   position: sticky;
