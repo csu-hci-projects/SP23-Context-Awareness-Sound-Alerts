@@ -44,6 +44,7 @@ export default function DemographicForm(props){
 
     return(
         <div className={"content"}>
+            <h1>Demographics Form</h1>
             <div className={"form-container"}>
                 <Table className={"form"}>
                     <thead>
