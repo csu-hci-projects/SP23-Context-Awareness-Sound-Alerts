@@ -1,5 +1,7 @@
 :root {
   --offWhite: #EDEDED;
+  --blue: #35a6db;
+  --green: #25be65;
   --lightBrown: #9A8074;
   --brown: #765D51;
   --darkBrown: #6c6363;
@@ -42,7 +44,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--blue);
 }
 
 .form-container{
@@ -139,7 +141,7 @@
 
 .action-button:active {
   cursor: pointer;
-  background-color: #00ff15;
+  background-color: var(--green);
 }
 
 .save-button {
@@ -206,7 +208,7 @@ hr {
 }
 
 .number {
-  color: aquamarine;
+  color: var(--blue);
   font-size: 1.1em;
   font-style: italic;
 }

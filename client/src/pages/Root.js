@@ -30,14 +30,14 @@ export default function Root(props) {
   return (
     <div className="content">
         <h1>Welcome to <br/> Context Awareness Sound Alerts (CASA)!</h1>
-        <p>Thank you for taking the time today to be a participate for CASA.</p>
-        <p>
+        <p className={"text-body"}>Thank you for taking the time today to be a participate for CASA.</p>
+        <p className={"text-body"}>
             During this experiment you will be asked to retype a text prompt into a text box.
             At the same time, you will hear sound alerts and click a button to acknowledge it has been heard.
-            You will be completing 3 groups of various background sounds and alert sounds.
+            You will be completing <span className={"number"}>3</span>  groups of various background sounds and alert sounds.
             In between each group of sound alerts, you will have a timed break.
         </p>
-        <p>When you are ready, please click 'Continue' to complete the demographics survey, then you will have a chance to go through an example before beginning the experiment.</p>
+        <p className={"text-body"}>When you are ready, please click <strong>Continue</strong> to complete the demographics survey, then you will have a chance to go through an example before beginning the experiment.</p>
         {debugGuard()}
     </div>
   );
