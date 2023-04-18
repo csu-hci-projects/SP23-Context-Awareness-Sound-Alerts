@@ -195,7 +195,6 @@ export default function DemographicForm(props){
                 </Table>
                 
             </div>
-
         </div>
     )
 }
