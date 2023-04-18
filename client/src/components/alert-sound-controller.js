@@ -33,6 +33,10 @@ export default function AlertSoundController(props){
     const alert3 = useRef(new Audio(URL_PREFIX + alertConfig.sounds[2].file));
     const alerts = [alert1.current, alert2.current, alert3.current];
 
+    alert1.current.volume = alertConfig.sounds[0].volume
+    alert2.current.volume = alertConfig.sounds[1].volume
+    alert3.current.volume = alertConfig.sounds[2].volume
+
     // Make sure all alert sounds have stopped when component unmounts
     useEffect(()=>{
         return ()=>{

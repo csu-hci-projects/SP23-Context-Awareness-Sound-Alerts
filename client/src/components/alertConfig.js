@@ -1,14 +1,14 @@
 const alertSound1 = {
     file: "Funk.wav",
-    volume: 1
+    volume: .4
 }
 const alertSound2 = {
     file: "Glass.wav",
-    volume: 1
+    volume: .3
 }
 const alertSound3 = {
     file: "Ping.wav",
-    volume: 1
+    volume: .4
 }
 
 export const alertConfig = {
