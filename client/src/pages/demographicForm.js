@@ -46,7 +46,7 @@ export default function DemographicForm(props){
         <div className={"content"}>
             <h1>Demographics Form</h1>
             <div className={"form-container"}>
-                <Table className={"form"}>
+                <Table className={"form text-body"}>
                     <thead>
                         <tr>
                             <th>Question</th>
@@ -55,31 +55,31 @@ export default function DemographicForm(props){
                     </thead>
                     <tbody>
                         <tr>
-                            <td><Label for="gender" sm={2}>Gender</Label></td>
+                            <td><Label for="gender" sm={2}>Gender:</Label></td>
                             <td>
                                 <FormGroup className={"formGroup"}
                                            onChange={handleGender}>
                                     <Label check>
                                         <Input type="radio" name="radio-gender" id="female" />{' '}
-                                        female
+                                        Female
                                     </Label><br/>
                                     <Label check>
                                         <Input type="radio" name="radio-gender" id="male" />{' '}
-                                        male
+                                        Male
                                     </Label><br/>
                                     <Label check>
                                         <Input type="radio" name="radio-gender" id="other"/>{' '}
-                                        prefer not to say
+                                        Prefer not to say
                                     </Label>
                                 </FormGroup>
                             </td>
                         </tr>
 
                         <tr>
-                            <td><Label for="age">Age</Label></td>
+                            <td><Label for="age">Age:</Label></td>
                             <td>
                                 <FormGroup className={"formGroup"} row>
-                                    <Input type="text" name="text1" id="Age"
+                                    <Input type="text" name="text1" id="Age" placeholder="Enter your age"
                                            onChange={handleAge}/>{' '}
                                 </FormGroup>
                             </td>
@@ -87,21 +87,21 @@ export default function DemographicForm(props){
 
                         <tr>
                             <td>
-                                <Label for="Hours"  sm={3}>Hours of computer use per day</Label>
+                                <Label for="Hours"  sm={3}>How many hours on average do you use a computer per day?</Label>
                             </td>
                             <td>
                                 <FormGroup className={"formGroup"} onChange={handleCompUse} row>
                                     <Label check>
                                         <Input type="radio" name="radio-compuse" id="1-3"/>{' '}
-                                        1-3
+                                        1 - 3
                                     </Label><br/>
                                     <Label check>
                                         <Input type="radio" name="radio-compuse" id="4-7"/>{' '}
-                                        4-7
+                                        4 - 7
                                     </Label><br/>
                                     <Label check>
                                         <Input type="radio" name="radio-compuse" id="8-10"/>{' '}
-                                        8-10
+                                        8 - 10
                                     </Label><br/>
                                     <Label check>
                                         <Input type="radio" name="radio-compuse" id="10+"/>{' '}
@@ -113,7 +113,7 @@ export default function DemographicForm(props){
 
                         <tr>
                             <td>
-                                <Label for="Brand"  sm={3}>Phone Brand</Label>
+                                <Label for="Brand"  sm={3}>What brand is your phone?</Label>
                             </td>
                             <td>
                                 <FormGroup className={"formGroup"} onChange={handleBrand} row>
@@ -146,29 +146,29 @@ export default function DemographicForm(props){
                         </tr>
 
                         <tr>
-                            <td><Label for="silent" sm={2}>Percent of time phone is on silent during the day</Label></td>
+                            <td><Label for="silent" sm={2}>How often is your phone on silent during the day?</Label></td>
                             <td>
                                 <FormGroup className={"formGroup"} row
                                            onChange={handleSilent}>
                                     <Label check>
-                                        <Input type="radio" name="radio-silent" id="0" />{' '}
-                                        0% - My phone is never on silent
+                                        <Input type="radio" name="radio-silent" id="1" />{' '}
+                                        1 - never
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio-silent" id="25" />{' '}
-                                        25% - My phone is on silent a small part of the day
+                                        <Input type="radio" name="radio-silent" id="2" />{' '}
+                                        2 - sometimes
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio-silent" id="50"/>{' '}
-                                        50% - My phone is on silent half of the day
+                                        <Input type="radio" name="radio-silent" id="3"/>{' '}
+                                        3 - half of the time
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio-silent" id="75"/>{' '}
-                                        75% - My phone is on silent most of the day
+                                        <Input type="radio" name="radio-silent" id="4"/>{' '}
+                                        4 - most of the time
                                     </Label><br/>
                                     <Label check>
-                                        <Input type="radio" name="radio-silent" id="100"/>{' '}
-                                        100% - My phone is on silent always
+                                        <Input type="radio" name="radio-silent" id="5"/>{' '}
+                                        5 - always
                                     </Label>
                                 </FormGroup>
                             </td>
@@ -196,7 +196,7 @@ export default function DemographicForm(props){
                 
             </div>
 
-            <Form className="text-body">
+            {/* <Form className="text-body">
                 <br/>
                 <fieldset>
                     <Label for="gender">Gender:</Label><br/>
@@ -264,7 +264,7 @@ export default function DemographicForm(props){
                     </FormGroup>
 
                 </fieldset>
-            </Form>
+            </Form> */}
 
         </div>
     )
