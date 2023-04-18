@@ -65,7 +65,7 @@ export default function AlertSoundController(props){
                     setNextAlert(nextAlert + 1);
                 })
         }
-    }, 100)
+    }, 800)
 
     const showAlertTimes = ()=>{
         if (alertTimes){
