@@ -59,7 +59,7 @@ export default function App(){
 
     // We don't want to show the nav bar during the experiment
     const showNavBar = ()=> {
-        if(pageIndex == 4){
+        if(pageIndex === 4 || pageIndex === 5){
             return debug ? <NavBar context={context}/> : null
         } else {
             return <NavBar context={context}/>
