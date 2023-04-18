@@ -199,6 +199,29 @@
   font-weight: bold;
 }
 
+.text-body label {
+  font-size: 16pt;
+}
+
+.formGroup {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+fieldset {
+  border: none;
+}
+
+#Age {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  margin-left: 0.25rem;
+  color: var(--brown);
+  padding:6px;
+  border-radius: 8px;
+}
+
 hr {
   border: 3px solid #5F5F5F;
   border-radius: 10px;
