@@ -17,7 +17,7 @@ export default function Timer(props){
         }
 
         setTimeLeft(new Date(endTime - new Date().getTime()))
-    }, 100)
+    }, 800)
 
     return(
         <div className={"timer"}>
