@@ -6,6 +6,8 @@
    - Pan: center (c)
    - Fader Gain: 0 db
 - Make sure environment is up and running properly
+  - Right click on desktop file 'CASA_run.sh' -> 'Run as Program'
+- Press 'Fn' + F11 to run full screen
 
 ## Once Participant Arrives
 - Have the sign consent form
@@ -20,4 +22,8 @@
 - Get Laptop ready for next experiment
 
 ## End of Experiment Day
-- run create-local-backup.py
+- run tools/create_local_backup.py with
+```
+cd tools
+python create_local_backup.py
+```
