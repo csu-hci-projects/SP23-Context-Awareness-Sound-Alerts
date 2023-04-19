@@ -44,6 +44,13 @@ export default function Export(props){
             {props.context.debug ? <h1>Data:</h1> : null}
             {props.context.debug ? <p>{props.context.experimentState.toString()}</p> : null}
             <p className={"text-body"}>
+                <font size={"+2"}>You're participate ID is: <strong>{props.context.experimentState.groupID.toString()}</strong></font>
+            </p>
+            <br/>
+            <p className={"text-body"}>Below are the details from your experiment.
+                After you are done reading the information below copy your participant ID and press <strong><code>Ctrl + Tab</code></strong> to fill out an exit survey.</p>
+            <br/>
+            <p className={"text-body"}>
                 Thank you so much for taking the time to complete this experiment.
                 If you're interested, below are some of the statistics from your experiment.
                 Otherwise, the experiment is now over.
