@@ -42,7 +42,7 @@ export default function Export(props){
         <div className={"content"}>
             <h1>Debrief</h1>
             {props.context.debug ? <h1>Data:</h1> : null}
-            {/* {props.context.debug ? <p>{props.context.experimentState.toString()}</p> : null} */}
+            {props.context.debug ? <p>{props.context.experimentState.toString()}</p> : null}
             <p className={"text-body"}>
                 Thank you so much for taking the time to complete this experiment.
                 If you're interested, below are some of the statistics from your experiment.
