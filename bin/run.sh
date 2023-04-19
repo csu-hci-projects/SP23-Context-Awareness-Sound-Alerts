@@ -1,6 +1,11 @@
 #!/bin/bash
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
+echo "root is $REPO_ROOT"
+if [ -z "$REPO_ROOT" ]; then
+  echo "Didn't find repo root, trying production experiment location."
+  REPO_ROOT="/home/db/Projects/SP23-Context-Awareness-Sound-Alerts/"
+fi
 LOGGING=1 #true
 LOG_LOCATION="runlog.log"
 CLIENT_PORT=11111
@@ -51,8 +56,16 @@ kill_proc_listing_on_port(){
 }
 
 # Run arguments
+
+run_stop(){
+  print_header "Running Stop"
+  kill_proc_listing_on_port "$SERVER_PORT"
+  kill_proc_listing_on_port "$CLIENT_PORT"
+}
+
 run_dev(){
   print_header "Running Dev"
+  run_stop
   print_success "Running Express Server for sounds"
   cd "$REPO_ROOT"/server && npm run dev &
   print_success "Running webpack and browser"
@@ -66,13 +79,6 @@ run_init(){
   print_log "Running npm install for server."
   cd "$REPO_ROOT"/server && npm install
 }
-
-run_stop(){
-  print_header "Running Stop"
-  kill_proc_listing_on_port "$SERVER_PORT"
-  kill_proc_listing_on_port "$CLIENT_PORT"
-}
-
 
 # RUN and parse arguments
 if  [ $# -eq 0 ] || [ $1 == "dev" ]; then
