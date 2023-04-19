@@ -18,3 +18,6 @@
 ## End of Study
 - Make sure data saved properly (green check mark)
 - Get Laptop ready for next experiment
+
+## End of Experiment Day
+- run create-local-backup.py
