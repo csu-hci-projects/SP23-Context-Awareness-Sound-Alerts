@@ -27,3 +27,4 @@
 cd tools
 python create_local_backup.py
 ```
+- Commit and push to the repo
