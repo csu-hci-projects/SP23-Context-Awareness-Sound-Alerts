@@ -9,6 +9,10 @@ export default function ExperimentController(props) {
     const [currentPhase, setCurrentPhase] = useState(0);
     const [breakTime, setBreakTime] = useState(false);
 
+    const now = () =>{
+        return new Date().getTime();
+    }
+
     const nextPhase = () => {
         if (currentPhase >= NUM_PHASES - 1) {
             // Finished last phase, advance page
@@ -16,18 +20,21 @@ export default function ExperimentController(props) {
         } else {
             // Set experiment end time
             props.context.experimentState.phaseData[currentPhase]
-                .experimentEndTime = new Date().getTime();
+                .experimentEndTime = now();
             // Set up the next phase and run a break timer first
             setCurrentPhase(currentPhase + 1)
+            setExpStartTime(now())
             setBreakTime(true)
         }
     }
 
+
+
     // Auto Advance Mechanism
-    const [expStart_ms, setExpStartTime] = useState(new Date().getTime())
+    const [expStart_ms, setExpStartTime] = useState(() => now())
     const [expElapsed, setExpElapsed] = useState(new Date(0));
     const interval = useRef(undefined)
-    const ADDITIONAL_EXPERIMENT_TAIL_PADDING_ms = (10 * 1000); // 10secs
+    const ADDITIONAL_EXPERIMENT_TAIL_PADDING_ms = (1 * 1000); // 10secs
     const maxPhaseTime_ms = // The length of the experiment before break time auto advance
         alertConfig.frontPadding_ms +
         (NUM_PHASES * alertConfig.padding_ms) +
@@ -36,7 +43,7 @@ export default function ExperimentController(props) {
     // const maxPhaseTime_ms = (20*1000);
     const phaseTimer = () => {
         return setInterval(() => {
-            const curTime_ms = new Date().getTime();
+            const curTime_ms = now();
             const elapsed = new Date(curTime_ms - expStart_ms);
             setExpElapsed(elapsed);
             if (elapsed >= maxPhaseTime_ms && breakTime === false) {
@@ -44,7 +51,7 @@ export default function ExperimentController(props) {
             }
         }, 1000)
     }
-    useEffect(()=>{
+    useEffect(() => {
         interval.current = phaseTimer()
 
         return (
@@ -52,19 +59,15 @@ export default function ExperimentController(props) {
         )
     }, [])
 
-    useEffect(()=>{
-        clearInterval(interval.current)
-        interval.current = phaseTimer()
-
-    }, [currentPhase])
-
     useEffect(() => {
-        setExpStartTime(new Date().getTime());
-    }, [breakTime])
+        clearInterval(interval.current)
+        setExpStartTime(now())
+        interval.current = phaseTimer()
+    }, [currentPhase, breakTime])
 
     const isItBreakTime = () => {
         if (breakTime) {
-            return <BreakTimer context={props.context} setBreakTime={setBreakTime}/>
+            return <BreakTimer context={props.context} setBreakTime={setBreakTime} setNow={setExpStartTime}/>
         } else {
             return <Experiment
                 context={props.context}

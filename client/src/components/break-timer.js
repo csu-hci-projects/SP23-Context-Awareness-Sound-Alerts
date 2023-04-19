@@ -6,7 +6,7 @@ export default function BreakTimer(props){
     // set props.setBreakTime(false) when done
     return (
         <div className={"break-timer"}>
-            <Timer setBreakTime={props.setBreakTime}/>
+            <Timer setBreakTime={props.setBreakTime} setNow={props.setNow}/>
             {props.context.debug ? <Button className={"Button"} onClick={()=>props.setBreakTime(false)}>manual advance</Button> : null}
         </div>
     )
