@@ -25,8 +25,9 @@ export default function AlertSoundController(props){
 
 
     const [nextAlert, setNextAlert] = useState(0);
-    const [alertTimes] = useState(getRandomAlertTimes());
+    const [alertTimes] = useState(()=>getRandomAlertTimes());
     const [elapsed, setElapsed] = useState(new Date());
+    const interval = useRef(undefined)
     const URL_PREFIX = "http://localhost:22222/";
     const alert1 = useRef(new Audio(URL_PREFIX + alertConfig.sounds[0].file));
     const alert2 = useRef(new Audio(URL_PREFIX + alertConfig.sounds[1].file));
@@ -37,35 +38,45 @@ export default function AlertSoundController(props){
     alert2.current.volume = alertConfig.sounds[1].volume
     alert3.current.volume = alertConfig.sounds[2].volume
 
+    const newInterval = ()=> {
+        return setInterval(()=>{
+            const currentTime_ms = new Date();
+            setElapsed(new Date(currentTime_ms - controllerStart));
+
+            if (alertTimes && currentTime_ms.getTime() >= alertTimes[nextAlert]){
+                // Latin Squares specified alert sound order
+                const indexOfSoundToPlay = props.alertOrder[nextAlert];
+
+                alerts[indexOfSoundToPlay].play()
+                    .then(()=>{
+                        console.log("Triggered alert sound! " + alertConfig.sounds[indexOfSoundToPlay].file);
+                        // Log alert time
+                        props.context.experimentState.phaseData[props.currentPhase]
+                            .alertTimes[props.alertOrder[nextAlert]]
+                            = new Date().getTime();
+                        // Advance to next alert
+                        console.log("Logged Sound Alert: Phase " + props.currentPhase + "Alert " + props.alertOrder[nextAlert] );
+                        setNextAlert(nextAlert + 1);
+                    })
+            }
+        }, 800)
+    }
+
     // Make sure all alert sounds have stopped when component unmounts
     useEffect(()=>{
+        interval.current = newInterval()
         return ()=>{
+            clearInterval(interval.current)
             alert1.current.pause();
             alert2.current.pause();
             alert3.current.pause();
         }
     }, [])
 
-    setTimeout(()=>{
-        const currentTime_ms = new Date();
-        setElapsed(new Date(currentTime_ms - controllerStart));
-
-        if (alertTimes && currentTime_ms.getTime() >= alertTimes[nextAlert]){
-            // Latin Squares specified alert sound order
-            const indexOfSoundToPlay = props.alertOrder[nextAlert];
-
-            alerts[indexOfSoundToPlay].play()
-                .then(()=>{
-                    console.log("Triggered alert sound! " + alertConfig.sounds[indexOfSoundToPlay].file);
-                    // Log alert time
-                    props.context.experimentState.phaseData[props.currentPhase]
-                        .alertTimes[props.alertOrder[nextAlert]]
-                        = new Date().getTime();
-                    console.log("Logged Sound Alert: Phase " + props.currentPhase + "Alert " + props.alertOrder[nextAlert] );
-                    setNextAlert(nextAlert + 1);
-                })
-        }
-    }, 800)
+    useEffect(()=>{
+        clearInterval(interval.current)
+        interval.current = newInterval()
+    }, [nextAlert])
 
     const showAlertTimes = ()=>{
         if (alertTimes){

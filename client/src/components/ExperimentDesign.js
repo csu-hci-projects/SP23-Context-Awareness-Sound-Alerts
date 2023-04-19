@@ -1,6 +1,6 @@
 const beachVolume = 1
 const cityVolume = 1
-const airportVolume = 1
+const airportVolume = .8
 
 
 // An individual experiment

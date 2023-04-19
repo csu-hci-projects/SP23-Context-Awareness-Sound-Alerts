@@ -47,7 +47,7 @@ export default function SampleTask({context}){
                     Each typing test will last a few minutes, then you will have a 30 second break.
                 </p>
                 <Example>
-                    <Timer setBreakTime={()=> null}/>
+                    <Timer setBreakTime={()=> null} setNow={()=> null}/>
                 </Example>
                 <hr/>
                 <p className={"text-body"}>When you're ready, press <strong>Continue</strong> to begin the experiment.</p>

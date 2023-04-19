@@ -14,6 +14,7 @@ export default function Timer(props){
         if (timeLeft <= 0){
             setEndTime(new Date(new Date().getTime() + TIMER_LENGTH_MS))
             props.setBreakTime(false)
+            props.setNow(new Date().getTime())
         }
 
         setTimeLeft(new Date(endTime - new Date().getTime()))
