@@ -44,7 +44,6 @@ data_source = {
     "airport-alert2-time": lambda phases: phases['airport']['alertTimes'][2],
     "airport-wpm": lambda phases: phases['airport']['wpm'],
     "airport-alert-order": lambda item: find_alert_order('Airport', item),
-
 }
 
 
