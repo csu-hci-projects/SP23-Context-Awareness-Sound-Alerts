@@ -5,6 +5,14 @@ import pandas as pd
 DATABASE = "test"
 COLLECTION = "test-collection"
 
+
+def find_alert_order(phase: str, item):
+    phases = item['assignedExperiment']['order']
+    for phase_list in phases:
+        if phase in phase_list['environment']:
+            return phase_list['notificationSoundOrder']
+
+
 # Master linking of data to source
 data_source = {
     "database-id": lambda item: str(item['_id']),
@@ -21,18 +29,22 @@ data_source = {
     "city-alert2-time": lambda phases: phases['city']['alertTimes'][1],
     "city-alert3-time": lambda phases: phases['city']['alertTimes'][2],
     "city-wpm": lambda phases: phases['city']['wpm'],
+    "city-alert-order": lambda item: find_alert_order('City', item),
     "beach-start-time": lambda phases: phases['beach']['experimentStartTime'],
     "beach-end-time": lambda phases: phases['beach']['experimentEndTime'],
     "beach-alert1-time": lambda phases: phases['beach']['alertTimes'][0],
     "beach-alert2-time": lambda phases: phases['beach']['alertTimes'][1],
     "beach-alert3-time": lambda phases: phases['beach']['alertTimes'][2],
     "beach-wpm": lambda phases: phases['beach']['wpm'],
+    "beach-alert-order": lambda item: find_alert_order('Beach', item),
     "airport-start-time": lambda phases: phases['airport']['experimentStartTime'],
     "airport-end-time": lambda phases: phases['airport']['experimentEndTime'],
     "airport-alert1-time": lambda phases: phases['airport']['alertTimes'][0],
     "airport-alert2-time": lambda phases: phases['airport']['alertTimes'][1],
     "airport-alert3-time": lambda phases: phases['airport']['alertTimes'][2],
-    "airport-wpm": lambda phases: phases['airport']['wpm']
+    "airport-wpm": lambda phases: phases['airport']['wpm'],
+    "airport-alert-order": lambda item: find_alert_order('Airport', item),
+
 }
 
 
@@ -57,7 +69,7 @@ def get_data(item, phases):
     for d in data_types:
         try:
             if d in ['database-id', 'groupID', 'gender', 'age', 'computerUse', 'brand', 'silent',
-                     'defaultNotification']:
+                     'defaultNotification', 'airport-alert-order', 'beach-alert-order', 'city-alert-order']:
                 result.append(data_source[d](item))
             else:
                 result.append(data_source[d](phases))
@@ -70,6 +82,8 @@ def get_data(item, phases):
     return result
 
 
+# All data must have the same number of rows, even if there weren't the same nubmers of clicks
+#   in each phase. This pads the data with nan to make the data square
 def pad_with_zeros(clicks: list, maxInt: int):
     result = list()
     for i in range(maxInt):
@@ -81,6 +95,7 @@ def pad_with_zeros(clicks: list, maxInt: int):
     return result
 
 
+# Find the phase with the most clicks so we can make the click data square
 def find_most_clicks(phases):
     max = 0
     for phase in phases:
