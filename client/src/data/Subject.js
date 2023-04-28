@@ -30,7 +30,7 @@ export default class subject {
                 getExperimentCount()
                     .then((count) => {
                         this.groupID = generate_groupID(count)
-                        this.assignedExperiment = AssignExp(id, count)
+                        this.assignedExperiment = AssignExp(this.groupID, count)
                     })
                     .catch(() => {
                         console.log("Error getting experiment count.")
@@ -152,6 +152,9 @@ function generate_groupID(lastExperimentIndex) {
             break;
         case 23:
             group_char = 'D';
+            break;
+        case 24:
+            group_char = 'A';
             break;
         default:
             group_char = 'Z'
