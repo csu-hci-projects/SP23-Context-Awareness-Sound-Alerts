@@ -1,4 +1,0 @@
-,database-id,groupID,gender,age,computerUse,brand,silent,defaultNotification,city-start-time,city-end-time,city-alert1-time,city-alert2-time,city-alert3-time,city-wpm,beach-start-time,beach-end-time,beach-alert1-time,beach-alert2-time,beach-alert3-time,beach-wpm,airport-start-time,airport-end-time,airport-alert1-time,airport-alert2-time,airport-alert3-time,airport-wpm
-0,642864f2a67302e26268c128,C-1598,NA,NA,NA,NA,NA,NA,1680368816734.0,NA,,,,0,NA,NA,,,,NA,NA,NA,,,,NA
-1,64286beee8c3965d46ef4bce,C-2503,male,1,10+,Pixel,50,NA,1680370589566.0,NA,,,,0,NA,NA,,,,NA,NA,NA,,,,NA
-2,6428eece05688003d02e229b,C-2333,female,12,4-7,Samsung,25,True,1680403894124.0,1680403965100.0,1680403911637.0,1680403916843.0,1680403903967.0,72,1680403969066.0,1680404040044.0,1680403976674.0,1680403984017.0,1680403992394.0,38,1680404044506.0,NA,1680404087234.0,1680404061228.0,1680404073908.0,0
