@@ -99,7 +99,7 @@ export default function WPMtest(props) {
                 style={state.inputStyle}
             />
             {state.startTime !== null && (
-                <div>
+                <div key={}>
                     <DisplayWPM wpm={state.wpm} />
                     <button onClick={handleRestart}>Restart</button>
                 </div>
