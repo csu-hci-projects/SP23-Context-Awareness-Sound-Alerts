@@ -80,7 +80,7 @@ function generate_groupID(lastExperimentIndex) {
     let group_char;
     let final_id;
 
-    switch (lastExperimentIndex) {
+    switch (lastExperimentIndex % 4) {
         case 0:
             group_char = 'A';
             break;
@@ -91,66 +91,6 @@ function generate_groupID(lastExperimentIndex) {
             group_char = 'C';
             break;
         case 3:
-            group_char = 'D';
-            break;
-        case 4:
-            group_char = 'A'
-            break;
-        case 5:
-            group_char = 'B'
-            break;
-        case 6:
-            group_char = 'C'
-            break;
-        case 7:
-            group_char = 'D';
-            break;
-        case 8:
-            group_char = 'A';
-            break;
-        case 9:
-            group_char = 'B';
-            break;
-        case 10:
-            group_char = 'C';
-            break;
-        case 11:
-            group_char = 'D';
-            break;
-        case 12:
-            group_char = 'A';
-            break;
-        case 13:
-            group_char = 'B';
-            break;
-        case 14:
-            group_char = 'C';
-            break;
-        case 15:
-            group_char = 'D';
-            break;
-        case 16:
-            group_char = 'A';
-            break;
-        case 17:
-            group_char = 'B';
-            break;
-        case 18:
-            group_char = 'C'
-            break;
-        case 19:
-            group_char = 'D'
-            break;
-        case 20:
-            group_char = 'A'
-            break;
-        case 21:
-            group_char = 'B';
-            break;
-        case 22:
-            group_char = 'C';
-            break;
-        case 23:
             group_char = 'D';
             break;
         default:
@@ -198,6 +138,8 @@ function AssignExp(groupID, lastExperimentIndex) {
         experiment_group = experimentArray.expArray[10];
     } else if (group_char === 'D' && (lastExperimentIndex === 19 || lastExperimentIndex === 23)) {
         experiment_group = experimentArray.expArray[11];
+    } else {
+        experiment_group = experimentArray.expArray[0];
     }
 
     console.log("my experiment group:", experiment_group);
