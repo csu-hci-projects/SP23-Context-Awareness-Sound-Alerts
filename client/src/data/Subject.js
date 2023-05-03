@@ -80,7 +80,7 @@ function generate_groupID(lastExperimentIndex) {
     let group_char;
     let final_id;
 
-    switch (lastExperimentIndex) {
+    switch (lastExperimentIndex % 4) {
         case 0:
             group_char = 'A';
             break;
@@ -91,66 +91,6 @@ function generate_groupID(lastExperimentIndex) {
             group_char = 'C';
             break;
         case 3:
-            group_char = 'D';
-            break;
-        case 4:
-            group_char = 'A'
-            break;
-        case 5:
-            group_char = 'B'
-            break;
-        case 6:
-            group_char = 'C'
-            break;
-        case 7:
-            group_char = 'D';
-            break;
-        case 8:
-            group_char = 'A';
-            break;
-        case 9:
-            group_char = 'B';
-            break;
-        case 10:
-            group_char = 'C';
-            break;
-        case 11:
-            group_char = 'D';
-            break;
-        case 12:
-            group_char = 'A';
-            break;
-        case 13:
-            group_char = 'B';
-            break;
-        case 14:
-            group_char = 'C';
-            break;
-        case 15:
-            group_char = 'D';
-            break;
-        case 16:
-            group_char = 'A';
-            break;
-        case 17:
-            group_char = 'B';
-            break;
-        case 18:
-            group_char = 'C'
-            break;
-        case 19:
-            group_char = 'D'
-            break;
-        case 20:
-            group_char = 'A'
-            break;
-        case 21:
-            group_char = 'B';
-            break;
-        case 22:
-            group_char = 'C';
-            break;
-        case 23:
             group_char = 'D';
             break;
         default:
@@ -174,30 +114,45 @@ function AssignExp(groupID, lastExperimentIndex) {
 
     console.log("My group char: ", group_char, "my lastExperimentIndex: ", lastExperimentIndex)
 
-    if (group_char === 'A' && (lastExperimentIndex === 0 || lastExperimentIndex === 4)) {
-        experiment_group = experimentArray.expArray[0];
-    } else if (group_char === 'A' && (lastExperimentIndex === 8 || lastExperimentIndex === 12)) {
-        experiment_group = experimentArray.expArray[1];
-    } else if (group_char === 'A' && (lastExperimentIndex === 16 || lastExperimentIndex === 20)) {
-        experiment_group = experimentArray.expArray[2];
-    } else if (group_char === 'B' && (lastExperimentIndex === 1 || lastExperimentIndex === 5)) {
-        experiment_group = experimentArray.expArray[3];
-    } else if (group_char === 'B' && (lastExperimentIndex === 9 || lastExperimentIndex === 13)) {
-        experiment_group = experimentArray.expArray[4];
-    } else if (group_char === 'B' && (lastExperimentIndex === 17 || lastExperimentIndex === 21)) {
-        experiment_group = experimentArray.expArray[5];
-    } else if (group_char === 'C' && (lastExperimentIndex === 2 || lastExperimentIndex === 6)) {
-        experiment_group = experimentArray.expArray[6];
-    } else if (group_char === 'C' && (lastExperimentIndex === 10 || lastExperimentIndex === 14)) {
-        experiment_group = experimentArray.expArray[7];
-    } else if (group_char === 'C' && (lastExperimentIndex === 18 || lastExperimentIndex === 22)) {
-        experiment_group = experimentArray.expArray[8];
-    } else if (group_char === 'D' && (lastExperimentIndex === 3 || lastExperimentIndex === 7)) {
-        experiment_group = experimentArray.expArray[9];
-    } else if (group_char === 'D' && (lastExperimentIndex === 11 || lastExperimentIndex === 15)) {
-        experiment_group = experimentArray.expArray[10];
-    } else if (group_char === 'D' && (lastExperimentIndex === 19 || lastExperimentIndex === 23)) {
-        experiment_group = experimentArray.expArray[11];
+    switch (lastExperimentIndex % 12) {
+        case 0:
+            experiment_group = experimentArray.expArray[0];
+            break;
+        case 1:
+            experiment_group = experimentArray.expArray[1];
+            break;
+        case 2:
+            experiment_group = experimentArray.expArray[2];
+            break;
+        case 3:
+            experiment_group = experimentArray.expArray[3];
+            break;
+        case 4:
+            experiment_group = experimentArray.expArray[4];
+            break;
+        case 5:
+            experiment_group = experimentArray.expArray[5];
+            break;
+        case 6:
+            experiment_group = experimentArray.expArray[6];
+            break;
+        case 7:
+            experiment_group = experimentArray.expArray[7];
+            break;
+        case 8:
+            experiment_group = experimentArray.expArray[8];
+            break;
+        case 9:
+            experiment_group = experimentArray.expArray[9];
+            break;
+        case 10:
+            experiment_group = experimentArray.expArray[10];
+            break;
+        case 11:
+            experiment_group = experimentArray.expArray[11];
+            break;
+        default:
+            experiment_group = null;
     }
 
     console.log("my experiment group:", experiment_group);
