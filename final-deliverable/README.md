@@ -6,7 +6,7 @@
 Please follow the links below to access videos
 
 ### Quick Overview
-(link)
+[Here](https://drive.google.com/file/d/1iaMmqh-mrBZOOPYUfQ1fYrgnWt0neb-W/view?usp=share_link) is a high level overview of our project.
 ### Code Walk-Through 
 [Here](https://drive.google.com/file/d/1kJW_JT9ePeztvR4b3kW1C3PrTd3VkP2c/view?usp=share_link) is a 3-minute code walkthrough.
 ### Experiment Detail
