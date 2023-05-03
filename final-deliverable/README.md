@@ -14,3 +14,5 @@ Please follow the links below to access videos
 
 ## Source Code
 Source code is available via: [github](https://github.com/csu-hci-projects/SP23-Context-Awareness-Sound-Alerts).
+
+### Launch Instructions
